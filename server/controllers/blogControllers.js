@@ -51,6 +51,12 @@ const createBlog = async (req, res) => {
             title: req.body.title,
             description: req.body.description,
             tags: req.body.tags
+        }).then((createdBlog) => {
+            res.status(200).json({
+                status: "Success",
+                success: true,
+                data: createdBlog
+            })
         })
     } catch (error) {
         
