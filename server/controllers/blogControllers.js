@@ -55,6 +55,7 @@ const createBlog = async (req, res) => {
             res.status(200).json({
                 status: "Success",
                 success: true,
+                message: "Here is the data",
                 data: createdBlog
             })
         })
