@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.MOGNO_URL)
+mongoose.connect("mongodb+srv://IsmetHamzaj:Djelli27072009@cluster0.r9t2lm4.mongodb.net/blogging")
 
 const connection = mongoose.connection
 
