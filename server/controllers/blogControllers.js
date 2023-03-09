@@ -50,7 +50,7 @@ const createBlog = async (req, res) => {
         const newBlog = await Blog.create({
             title: req.body.title,
             description: req.body.description,
-            
+            tags: req.body.tags
         })
     } catch (error) {
         
