@@ -45,4 +45,13 @@ const getBlogById = async (req, res) => {
 }
 
 
+const createBlog = async (req, res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
+
 module.exports = {getAllBlogs, getBlogById}
