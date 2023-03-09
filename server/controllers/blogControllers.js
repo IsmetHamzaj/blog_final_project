@@ -59,9 +59,13 @@ const createBlog = async (req, res) => {
             })
         })
     } catch (error) {
-        
+        res.status(500).json({
+            status: "Failed",
+            succes: false,
+            message: error
+        })
     }
 }
 
 
-module.exports = {getAllBlogs, getBlogById}
+module.exports = {getAllBlogs, getBlogById, createBlog}

@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const {getAllBlogs, getBlogById} = require('./../controllers/blogControllers')
+const {getAllBlogs, getBlogById, createBlog} = require('./../controllers/blogControllers')
 
-router.route("/").get(getAllBlogs)
+router.route("/").get(getAllBlogs).post(createBlog)
 router.route("/:id").get(getBlogById)
 
 
