@@ -49,6 +49,7 @@ const createBlog = async (req, res) => {
     try {
         const newBlog = await Blog.create({
             title: req.body.title,
+            description: req.body.description,
             
         })
     } catch (error) {
