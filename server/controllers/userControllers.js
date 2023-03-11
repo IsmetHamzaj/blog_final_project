@@ -1,4 +1,5 @@
 const User = require('./../models/userModel')
+const bcrypt = require('bcryptjs')
 const { generateToken } = require('./../Auth/auth');
 const { requireAuth } = require('./../middlewares/authMiddleware')
 
@@ -69,7 +70,11 @@ const register = async (req, res) => {
         req.body.password = hashedPassword
         const newUser = new User(req.body)
         await newUser.save()
-        res.status(200).json({ message: "User created successfully", success: true, data: newUser })
+        res.status(200).json({
+            message: "User created successfully",
+            success: true,
+            data: newUser
+        })
     } catch (error) {
         res.status(500).json({
             status: "Failed",
