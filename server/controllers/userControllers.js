@@ -1,4 +1,5 @@
 const User = require('./../models/userModel')
+const { generateToken } = require('./auth');
 
 const getAllUsers = async (req, res) => {
     try {
@@ -82,17 +83,21 @@ const login = async (req, res) => {
         if (!user) {
             return res
                 .status(404)
-                .json({ message: "Incorrect email or password", success: false })
+                .json({ message: "Invalid email or password", success: false })
         }
         const isPasswordValid = await user.comparePassword(req.body.password);
         if (!isPasswordValid) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
+
+
+        const token = generateToken(user._id);
+        return res.status(200).json({ token });
     } catch (error) {
         console.log(err)
         res
             .status(500)
-            .json({ message: "Error logging in", success: false, err })
+            .json({ message: "Internal server error", success: false, err })
     }
 }
 
