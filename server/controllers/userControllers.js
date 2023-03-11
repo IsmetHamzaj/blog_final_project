@@ -69,7 +69,7 @@ const register = async (req, res) => {
         req.body.password = hashedPassword
         const newUser = new User(req.body)
         await newUser.save()
-        res.status(200).send({ message: "User created successfully", success: true })
+        res.status(200).json({ message: "User created successfully", success: true, data: newUser })
     } catch (error) {
         res.status(500).json({
             status: "Failed",
