@@ -52,7 +52,7 @@ const getUserById = async (req, res) => {
 
 
 
-const createUser = async (req, res) => {
+const register = async (req, res) => {
     try {
         const newUser = await User.create({
             name: req.body.name,
@@ -77,4 +77,4 @@ const createUser = async (req, res) => {
 
 
 
-module.exports = {getAllUsers, getUserById, createUser}
+module.exports = {getAllUsers, getUserById, register}
