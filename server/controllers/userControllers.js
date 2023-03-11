@@ -1,5 +1,5 @@
 const User = require('./../models/userModel')
-const { generateToken } = require('./auth');
+const { generateToken } = require('./../Auth/auth');
 
 const getAllUsers = async (req, res) => {
     try {
@@ -80,24 +80,22 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email, password: req.body.password })
+        const token = generateToken(user._id);
+        console.log(token)
         if (!user) {
             return res
                 .status(404)
                 .json({ message: "Invalid email or password", success: false })
+        } else {
+            return res
+                .status(200).json({ message: "You have logged in", data: user, success: true })
         }
-        const isPasswordValid = await user.comparePassword(req.body.password);
-        if (!isPasswordValid) {
-            return res.status(401).json({ message: 'Invalid email or password' });
-        }
-
-
-        const token = generateToken(user._id);
         return res.status(200).json({ token });
     } catch (error) {
-        console.log(err)
+        console.log(error)
         res
             .status(500)
-            .json({ message: "Internal server error", success: false, err })
+            .json({ message: "Internal server error", success: false, error })
     }
 }
 
