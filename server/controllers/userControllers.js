@@ -1,5 +1,7 @@
 const User = require('./../models/userModel')
 const { generateToken } = require('./../Auth/auth');
+const { requireAuth } = require('./../middlewares/authMiddleware')
+
 
 const getAllUsers = async (req, res) => {
     try {
@@ -90,7 +92,6 @@ const login = async (req, res) => {
             return res
                 .status(200).json({ message: "You have logged in", data: user, success: true })
         }
-        return res.status(200).json({ token });
     } catch (error) {
         console.log(error)
         res
@@ -100,4 +101,4 @@ const login = async (req, res) => {
 }
 
 
-module.exports = { getAllUsers, getUserById, register, login }
+module.exports = { getAllUsers, getUserById, register, login, requireAuth }
