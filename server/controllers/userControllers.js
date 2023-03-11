@@ -83,10 +83,10 @@ const login = async (req, res) => {
             return res
                 .status(404)
                 .json({ message: "Incorrect email or password", success: false })
-        } else {
-            return res
-                .status(200)
-                .json({ success: true, message: "Success", data: user })
+        }
+        const isPasswordValid = await user.comparePassword(req.body.password);
+        if (!isPasswordValid) {
+            return res.status(401).json({ message: 'Invalid email or password' });
         }
     } catch (error) {
         console.log(err)
