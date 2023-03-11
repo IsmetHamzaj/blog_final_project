@@ -82,7 +82,7 @@ const login = async (req, res) => {
         if (!user) {
             return res
                 .status(404)
-                .json({ message: "Incorrect email", success: false })
+                .json({ message: "Incorrect email or password", success: false })
         } else {
             return res
                 .status(200)
