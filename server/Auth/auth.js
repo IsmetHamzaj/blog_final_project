@@ -9,5 +9,6 @@ function generateToken(userId) {
 }
 
 module.exports = {
-    generateToken
+    generateToken,
+    JWT_SECRET_KEY
 };
