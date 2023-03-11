@@ -76,5 +76,25 @@ const register = async (req, res) => {
 }
 
 
+const login = async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.body.email, password: req.body.password })
+        if (!user) {
+            return res
+                .status(404)
+                .json({ message: "Incorrect email", success: false })
+        } else {
+            return res
+                .status(200)
+                .json({ success: true, message: "Success", data: user })
+        }
+    } catch (error) {
+        console.log(err)
+        res
+            .status(500)
+            .json({ message: "Error logging in", success: false, err })
+    }
+}
 
-module.exports = {getAllUsers, getUserById, register}
+
+module.exports = { getAllUsers, getUserById, register, login }
