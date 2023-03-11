@@ -1,38 +1,18 @@
-const Blog = require('./../models/blogModel')
+const User = require('./../models/userModel')
 
-const getAllBlogs = async (req, res) => {
-    await Blog.find().then((blogs) => {
-        if(blogs.length > 0 ) {
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find()
+        if (users.length > 0) {
             res.status(200).json({
                 status: "Success",
-                data: blogs
+                success: true,
+                data: users
             })
         } else {
             res.status(404).json({
                 status: "Success",
-                message: "There are no blogs to display at the moment"
-            })
-        }
-    }).catch((err) => {
-        console.log("Gabim: ", err)
-    })
-}
-
-
-const getBlogById = async (req, res) => {
-    try {
-        const blogPost = await Blog.findById(req.params.id)
-        if(!blogPost) {
-            res.status(404).json({
-                status: "Success",
-                success: true,
-                message: "Blog post not found"
-            })
-        } else {
-            res.json(200).json({
-                status: "Success",
-                success: true,
-                data: blogPost
+                message: "There are no users"
             })
         }
     } catch (error) {
@@ -45,18 +25,45 @@ const getBlogById = async (req, res) => {
 }
 
 
-const createBlog = async (req, res) => {
+const getUserById = async (req, res) => {
     try {
-        const newBlog = await Blog.create({
-            title: req.body.title,
-            description: req.body.description,
-            tags: req.body.tags
-        }).then((createdBlog) => {
+        const user = await User.findById(req.params.id)
+        if (!user) {
+            res.status(404).json({
+                status: "Success",
+                success: true,
+                message: "User not found"
+            })
+        } else {
+            res.json(200).json({
+                status: "Success",
+                success: true,
+                data: user
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
+            status: "Failed",
+            success: false,
+            message: error
+        })
+    }
+}
+
+
+
+const createUser = async (req, res) => {
+    try {
+        const newUser = await User.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+        }).then((createdUser) => {
             res.status(200).json({
                 status: "Success",
                 success: true,
                 message: "Here is the data",
-                data: createdBlog
+                data: createdUser
             })
         })
     } catch (error) {
@@ -69,4 +76,5 @@ const createBlog = async (req, res) => {
 }
 
 
-module.exports = {getAllBlogs, getBlogById, createBlog}
+
+module.exports = {getAllUsers, getUserById, createUser}
