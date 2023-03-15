@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const Profile = () => {
-    const [user, setUser] = useState([])
-    const userId = 1
+    const [user, setUser] = useState({})
+    const { id } = useParams()
 
-    axios.get(`http://localhost:3000/api/users/${userId}`)
+    const response = axios.get(`http://localhost:3000/api/users/${id}`)
         .then(res => {
-            console.log(res.data)
+            setUser(res.data.data)
         })
         .catch(err => {
             console.log(err)
         })
-  return (
-    <div>Profile</div>
-  )
+    return (
+        <div>Profile</div>
+    )
 }
 
 export default Profile
