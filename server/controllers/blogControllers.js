@@ -1,28 +1,41 @@
 const Blog = require('./../models/blogModel')
 
 const getAllBlogs = async (req, res) => {
-    await Blog.find().then((blogs) => {
-        if(blogs.length > 0 ) {
-            res.status(200).json({
-                status: "Success",
-                data: blogs
-            })
-        } else {
-            res.status(404).json({
-                status: "Success",
-                message: "There are no blogs to display at the moment"
-            })
-        }
-    }).catch((err) => {
-        console.log("Gabim: ", err)
-    })
+    const page = parseInt(req.query.page) || 1
+    const pageSize = parseInt(req.query.pageSize) || 10
+
+    await Blog.find()
+        .sort({ data: -1 })
+        .skip((page - 1) * pageSize)
+        .limit(pageSize)
+        .exec()
+        .then((blogs) => {
+            if (blogs.length > 0) {
+                const totalPosts = Blog.countDocuments().exec()
+                const totalPages = Math.ceil(totalPosts / pageSize)
+                res.status(200).json({
+                    status: "Success",
+                    data: blogs,
+                    currentPage: page,
+                    totalPages,
+                    totalPosts
+                })
+            } else {
+                res.status(404).json({
+                    status: "Success",
+                    message: "There are no blogs to display at the moment"
+                })
+            }
+        }).catch((err) => {
+            console.log("Gabim: ", err)
+        })
 }
 
 
 const getBlogById = async (req, res) => {
     try {
         const blogPost = await Blog.findById(req.params.id)
-        if(!blogPost) {
+        if (!blogPost) {
             res.status(404).json({
                 status: "Success",
                 success: true,
@@ -69,4 +82,4 @@ const createBlog = async (req, res) => {
 }
 
 
-module.exports = {getAllBlogs, getBlogById, createBlog}
+module.exports = { getAllBlogs, getBlogById, createBlog }
