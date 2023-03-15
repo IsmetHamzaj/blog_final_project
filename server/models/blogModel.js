@@ -10,20 +10,19 @@ const blogSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        // author: {
-        //     type: String,
-        //     required: true
-        // }
         date: {
             type: Date,
             required: true,
             default: Date.now()
         },
         tags: [String],
-        // image: {
-
-        // }
-        // slug: String
+        categoryId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Category",
+            required: true
+        },
+        imageUrl: { type: String }
+        
     }
 )
 
