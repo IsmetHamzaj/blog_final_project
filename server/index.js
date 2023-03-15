@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 require('dotenv').config()
 
 const dbConfig = require('./config/dbConfig')
@@ -12,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 
-app.use("/api/blogs", blogRoutes)
+app.use("/api/blogs", cors() ,blogRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/comments", commentRoutes)
 
