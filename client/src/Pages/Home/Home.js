@@ -22,6 +22,7 @@ const Home = () => {
                     <div key={blog._id}>
                         <p>{blog.title}</p>
                         <p>{blog.description}</p>
+                        <p>#{blog.tags}</p>
                     </div>
                 )
             })

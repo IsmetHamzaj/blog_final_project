@@ -4,8 +4,8 @@ import Profile from './Pages/Profile';
 function App() {
   return (
     <div className="App">
-        {/* <Home /> */}
-        <Profile />
+        <Home />
+        {/* <Profile /> */}
     </div>
   );
 }
