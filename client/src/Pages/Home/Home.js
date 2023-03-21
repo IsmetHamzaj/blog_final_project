@@ -29,9 +29,12 @@ const Home = () => {
   const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog)
 
 
-  const paginate = pageNumber => setCurrentPage(pageNumber)
+  const paginate = (pageNumber, e) => {
+    e.preventDefault()
+    setCurrentPage(pageNumber)
+  }
 
-  
+
   return (
     <div>
       {
