@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { showLoading, hideLoading } from '../../Redux/loadingSlice'
-import Pagination from '../../Components/Pagination'
+// import Pagination from '../../Components/Pagination'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -12,11 +12,13 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [BlogsPerPage, setBlogsPerPage] = useState(12) 
 
+  console.log(BlogsPerPage)
   useEffect(() => {
     dispatch(showLoading())
     axios.get("http://localhost:3000/api/blogs")
       .then(res => {
         setBlogs(res.data.data)
+        setBlogsPerPage(res.data.totalPages)
       })
       .catch(err => {
         console.log(err)

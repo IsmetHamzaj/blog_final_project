@@ -3,29 +3,31 @@ const Blog = require('./../models/blogModel')
 const getAllBlogs = async (req, res) => {
     const page = parseInt(req.query.page) || 1
     const pageSize = parseInt(req.query.pageSize) || 10
+    const totalPosts = await Blog.countDocuments().exec()
+    const totalPages = Math.ceil(totalPosts / pageSize)
+
     await Blog.find()
         .sort({ data: -1 })
         .skip((page - 1) * pageSize)
         .limit(pageSize)
         .exec()
         .then((blogs) => {
-            const totalPosts = Blog.countDocuments().exec()
-            const totalPages = Math.ceil(totalPosts / pageSize)
             if (blogs.length > 0) {
                 res.status(200).json({
                     status: "Success",
                     data: blogs,
                     currentPage: page,
-                    totalPages,
-                    totalPosts
+                    totalPages: totalPages,
+                    totalPosts: totalPosts,
                 })
             } else {
                 res.status(404).json({
                     status: "Success",
-                    message: "There are no blogs to display at the moment"
+                    message: "There are no blogs to display at the moment",
                 })
             }
-        }).catch((err) => {
+        })
+        .catch((err) => {
             console.log("Gabim: ", err)
         })
 }
