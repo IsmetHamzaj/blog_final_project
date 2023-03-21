@@ -16,11 +16,11 @@ const blogSchema = new mongoose.Schema(
             default: Date.now()
         },
         tags: [String],
-        categoryId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Category",
-            required: true
-        },
+        // categoryId: {
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     ref: "Category",
+        //     required: true
+        // },
         imageUrl: { type: String }
         
     }

@@ -1,24 +1,12 @@
 const Blog = require('./../models/blogModel')
 
 const getAllBlogs = async (req, res) => {
-    const page = parseInt(req.query.page) || 1
-    const pageSize = parseInt(req.query.pageSize) || 10
-
     await Blog.find()
-        .sort({ data: -1 })
-        .skip((page - 1) * pageSize)
-        .limit(pageSize)
-        .exec()
         .then((blogs) => {
             if (blogs.length > 0) {
-                const totalPosts = Blog.countDocuments().exec()
-                const totalPages = Math.ceil(totalPosts / pageSize)
                 res.status(200).json({
                     status: "Success",
                     data: blogs,
-                    currentPage: page,
-                    totalPages,
-                    totalPosts
                 })
             } else {
                 res.status(404).json({
