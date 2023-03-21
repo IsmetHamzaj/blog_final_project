@@ -13,12 +13,14 @@ const Home = () => {
   const [BlogsPerPage, setBlogsPerPage] = useState(12) 
 
   console.log(BlogsPerPage)
+  console.log(currentPage)
   useEffect(() => {
     dispatch(showLoading())
     axios.get("http://localhost:3000/api/blogs")
       .then(res => {
         setBlogs(res.data.data)
         setBlogsPerPage(res.data.totalPages)
+        setCurrentPage(res.data.currentPage)
       })
       .catch(err => {
         console.log(err)
@@ -52,6 +54,7 @@ const Home = () => {
           )
         })
       }
+      <p>{currentPage}</p>
       {/* <Pagination BlogsPerPage={BlogsPerPage} totalBlogs={blogs.length} paginate={paginate} currentPage={currentPage} /> */}
     </div>
   )
