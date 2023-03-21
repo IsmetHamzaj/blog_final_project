@@ -7,8 +7,10 @@ import Pagination from '../../Components/Pagination'
 const Home = () => {
   const dispatch = useDispatch()
   const [blogs, setBlogs] = useState([])
-  const [currentPage, setCurrentPage] = useState(1);
-  const [BlogsPerPage, setBlogsPerPage] = useState(12)
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [BlogsPerPage, setBlogsPerPage] = useState(12)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [BlogsPerPage, setBlogsPerPage] = useState(12) 
 
   useEffect(() => {
     dispatch(showLoading())
@@ -24,15 +26,15 @@ const Home = () => {
 
 
 
-  const indexOfLastBlog = currentPage * BlogsPerPage;
-  const indexOfFirstBlog = indexOfLastBlog - BlogsPerPage
-  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog)
+  // const indexOfLastBlog = currentPage * BlogsPerPage;
+  // const indexOfFirstBlog = indexOfLastBlog - BlogsPerPage
+  // const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog)
 
 
-  const paginate = (pageNumber, e) => {
-    e.preventDefault()
-    setCurrentPage(pageNumber)
-  }
+  // const paginate = (pageNumber, e) => {
+  //   e.preventDefault()
+  //   setCurrentPage(pageNumber)
+  // }
 
 
   return (
@@ -48,7 +50,7 @@ const Home = () => {
           )
         })
       }
-      <Pagination BlogsPerPage={BlogsPerPage} totalBlogs={blogs.length} paginate={paginate} currentPage={currentPage} />
+      {/* <Pagination BlogsPerPage={BlogsPerPage} totalBlogs={blogs.length} paginate={paginate} currentPage={currentPage} /> */}
     </div>
   )
 }
