@@ -1,8 +1,8 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    blogs: [],
+    blog: [],
     currentBlog: {}
 }
 
@@ -11,16 +11,16 @@ const blogSlice = createSlice({
     initialState,
     reducers: {
         addBlog: (state, action) => {
-            state.blogs.push(action.payload)
+            state.blog.push(action.payload)
         },
         updateBlog: (state, action) => {
-            const index = state.blogs.findIndex(blog => blog._id === action.payload._id)
+            const index = state.blog.findIndex(blog => blog._id === action.payload._id)
             if(index !== -1) {
-                state.blogs[index] = action.payload
+                state.blog[index] = action.payload
             }
         },
         deleteBlog: (state, action) => {
-            state.blogs = state.blogs.filter(blog => blog._id !== action.payload)
+            state.blogs = state.blog.filter(blog => blog._id !== action.payload)
         },
         setCurrentBlog: (state, action) => {
             state.currentBlog = action.payload

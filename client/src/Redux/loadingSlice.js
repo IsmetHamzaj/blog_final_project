@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-export const loadingSlice = createSlice({
+const loadingSlice = createSlice({
     name: "alerts",
     initialState: {
         loading: false,
@@ -16,3 +16,4 @@ export const loadingSlice = createSlice({
 })
 
 export const { showLoading, hideLoading } = loadingSlice.actions
+export default loadingSlice.reducer
