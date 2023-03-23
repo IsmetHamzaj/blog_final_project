@@ -31,24 +31,20 @@ const Home = () => {
 
   return (
     <div>
-      {
-        !loading ? (
-          <p>Loading...</p>
-        ) : (
-          blogs?.map((blog) => {
-            return (
-              <div key={blog._id}>
-                <p>{blog.title}</p>
-                <p>{blog.description}</p>
-                <p>#{blog.tags}</p>
-              </div>
-            )
-          })
-        )
-      }
+      {loading ? <p>Loading...</p> : (
+        <>
+          {console.log("After fetching data, loading is:", loading)}
+          {blogs.map((blog) => (
+            <div key={blog._id}>
+              <p>{blog.title}</p>
+              <p>{blog.description}</p>
+              <p>#{blog.tags}</p>
+            </div>
+          ))}
+        </>
+      )}
       <p>{currentPage}</p>
     </div>
   )
 }
-
 export default Home
