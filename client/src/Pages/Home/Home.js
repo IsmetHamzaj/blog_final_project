@@ -14,8 +14,8 @@ const Home = () => {
 
 
   useEffect(() => {
-    console.log("Before fetching data, loading is:", loading);
     dispatch(showLoading());
+    console.log("Before fetching data, loading is:", loading);
     axios.get("http://localhost:3000/api/blogs")
       .then((response) => {
         const blogs = response.data.data;
@@ -32,10 +32,10 @@ const Home = () => {
   return (
     <div>
       {
-        loading ? (
+        !loading ? (
           <p>Loading...</p>
         ) : (
-          blogs.map((blog) => {
+          blogs?.map((blog) => {
             return (
               <div key={blog._id}>
                 <p>{blog.title}</p>
