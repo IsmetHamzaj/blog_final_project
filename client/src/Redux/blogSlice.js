@@ -6,7 +6,7 @@ const initialState = {
     currentBlog: {}
 }
 
-export const blogSlice = createSlice({
+const blogSlice = createSlice({
     name: 'blog',
     initialState,
     reducers: {
@@ -22,8 +22,11 @@ export const blogSlice = createSlice({
         deleteBlog: (state, action) => {
             state.blogs = state.blogs.filter(blog => blog._id !== action.payload)
         },
-        setCurrentBlog: (state, action) {
-            
+        setCurrentBlog: (state, action) => {
+            state.currentBlog = action.payload
         }
     }
 })
+
+export const {addBlog , updateBlog, deleteBlog, setCurrentBlog} = blogSlice.actions
+export default blogSlice.reducer
