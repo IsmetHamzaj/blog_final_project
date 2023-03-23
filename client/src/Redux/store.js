@@ -1,17 +1,17 @@
 import { combineReducers } from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from "react-redux"
-import { loadingSlice } from './loadingSlice'
-import blogSlice from './blogSlice'
+import loadingReducer from './loadingSlice'
+import blogReducer from './blogSlice'
 
 const rootReducer = combineReducers({
-    loadings: loadingSlice.reducer,
-    blog: blogSlice.reducer
+    loading: loadingReducer,
+    blog: blogReducer
 })
 
 
 const store = configureStore({
     reducer: rootReducer
 })
+
 
 export default store
