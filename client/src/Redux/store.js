@@ -1,10 +1,12 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
-import {Provider} from "react-redux"
+import { Provider } from "react-redux"
 import { loadingSlice } from './loadingSlice'
+import blogSlice from './blogSlice'
 
 const rootReducer = combineReducers({
-    loadings: loadingSlice.reducer
+    loadings: loadingSlice.reducer,
+    blog: blogSlice.reducer
 })
 
 
