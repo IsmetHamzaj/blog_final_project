@@ -88,7 +88,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         console.log(req.body.email, req.body.password)
-        const user = await User.findOne({email: req.body.email, password: req.body.password})
+        const user = await User.findOne({ email: req.body.email, password: req.body.password })
         const token = generateToken(user?._id);
         console.log(token)
         console.log(user)
