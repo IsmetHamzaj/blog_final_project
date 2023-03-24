@@ -1,10 +1,9 @@
 import './App.css';
 import Login from './Components/Login/Login';
 import Home from './Pages/Home';
-import { Navigate, Route, Routes, useNavigate } from 'react-router'
+import { Navigate, useNavigate } from 'react-router'
+import { Route, Routes } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom'
-import Profile from './Pages/Profile';
-import { useState } from 'react';
 
 const ProtectedRoute = ({ user, ...props }) => {
   if (!user) {
@@ -15,7 +14,7 @@ const ProtectedRoute = ({ user, ...props }) => {
 };
 
 
-function App({user}) {
+function App({ user }) {
 
   return (
     <div className="App">
