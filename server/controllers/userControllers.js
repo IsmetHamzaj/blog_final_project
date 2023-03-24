@@ -2,7 +2,8 @@ const User = require('./../models/userModel')
 const bcrypt = require('bcryptjs')
 const { generateToken } = require('./../Auth/auth');
 const { requireAuth } = require('./../middlewares/authMiddleware')
-
+const jwt = require('jsonwebtoken')
+const {JWT_SECRET_KEY} = require('./../Auth/auth')
 
 const getAllUsers = async (req, res) => {
     try {
@@ -101,14 +102,14 @@ const login = async (req, res) => {
                 .status(200)
                 .send({ message: "Password is incorrect", success: false })
         } else {
-            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" })
+            const token = jwt.sign({ id: user._id }, JWT_SECRET_KEY, { expiresIn: "1h" })
             res
                 .status(200)
                 .send({ message: "Login successfully", success: true, data: token })
         }
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "Internal server error", success: false, error });
+        return res.status(500).json({ message: "Internal server error", success: false, error: error });
     }
 };
 
