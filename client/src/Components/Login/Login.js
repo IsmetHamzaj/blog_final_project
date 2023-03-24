@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { redirect } from 'react-router-dom'
 
 
 const Login = () => {
@@ -18,7 +17,7 @@ const Login = () => {
       })
       console.log(response.data.data)
       if(response.data.data) {
-        // redirect('/home')
+        
       } else {
         alert("Your email or password is wrong")
       }
