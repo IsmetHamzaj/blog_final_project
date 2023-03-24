@@ -1,40 +1,28 @@
 import './App.css';
 import Login from './Components/Login/Login';
 import Home from './Pages/Home';
-import { Route, Routes, useNavigate } from 'react-router'
+import { Navigate, Route, Routes, useNavigate } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
-import Links from './Components/Links';
 import Profile from './Pages/Profile';
+import { useState } from 'react';
 
-const ProtectedRoute = ({ user, children, redirectToLogin }) => {
+const ProtectedRoute = ({ user, ...props }) => {
   if (!user) {
-    redirectToLogin();
+    return <Navigate to="/login" replace />;
   }
 
-  return children;
+  return <Route {...props} />;
 };
 
-function App() {
-  const navigate = useNavigate();
 
-  const redirectToLogin = () => {
-    navigate('/login', { replace: true });
-  };
-  
+function App({user}) {
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {Links?.map((route, index) => {
-            return (
-              <Route
-                key={index}
-                path={route?.private ? "/login" : route?.path}
-                element={route?.private ? <ProtectedRoute route={route} /> : route?.Component}
-              />
-            );
-          })
-          }
+          <ProtectedRoute path="/" element={<Home />} user={user} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>
