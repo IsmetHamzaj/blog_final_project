@@ -87,25 +87,22 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        console.log(req.body.email, req.body.password)
-        const user = await User.findOne({ email: req.body.email, password: req.body.password })
+        console.log(req.body.email, req.body.password);
+        const user = await User.findOne({ email: req.body.email, password: req.body.password });
         const token = generateToken(user?._id);
-        console.log(token)
-        console.log(user)
+        console.log(token);
+        console.log(user);
         if (!user) {
-            return res
-                .status(404)
-                .json({ message: "Invalid email or password", success: false })
+            return res.status(404).json({ message: "Invalid email or password", success: false });
         } else {
-            return res
-                .status(200).json({ message: "You have logged in", data: user, success: true })
+            return res.status(200).json({ message: "You have logged in", data: user, success: true });
         }
     } catch (error) {
-        res
-            .status(500)
-            .json(console.log(error))
+        console.log(error);
+        return res.status(500).json({ message: "Internal server error", success: false, error });
     }
-}
+};
+
 
 
 module.exports = { getAllUsers, getUserById, register, login, requireAuth }
