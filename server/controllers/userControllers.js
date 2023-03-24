@@ -94,8 +94,17 @@ const login = async (req, res) => {
         console.log(user);
         if (!user) {
             return res.status(404).json({ message: "Invalid email or password", success: false });
+        }
+        const isMatch = await bcrypt.compare(req.body.password, user.password)
+        if (!isMatch) {
+            return res
+                .status(200)
+                .send({ message: "Password is incorrect", success: false })
         } else {
-            return res.status(200).json({ message: "You have logged in", data: user, success: true });
+            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" })
+            res
+                .status(200)
+                .send({ message: "Login successfully", success: true, data: token })
         }
     } catch (error) {
         console.log(error);
