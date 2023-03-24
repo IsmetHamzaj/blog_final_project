@@ -8,7 +8,7 @@ const Home = () => {
   const dispatch = useDispatch()
   const blogs = useSelector((state) => state.blog.blog[0])
   console.log(blogs)
-  const loading = useSelector((state) => state.loading)
+  const loading = useSelector((state) => state.loading.loading)
   const [currentPage, setCurrentPage] = useState(1)
   const [BlogsPerPage, setBlogsPerPage] = useState(12)
 
@@ -29,12 +29,16 @@ const Home = () => {
       });
   }, []);
 
+  useEffect(() => {
+    console.log('loading:', loading);
+  }, [loading]);
+
   return (
     <div>
       {loading ? <p>Loading...</p> : (
         <>
           {console.log("After fetching data, loading is:", loading)}
-          {blogs.map((blog) => (
+          {blogs?.map((blog) => (
             <div key={blog._id}>
               <p>{blog.title}</p>
               <p>{blog.description}</p>
