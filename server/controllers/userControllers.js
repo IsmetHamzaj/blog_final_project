@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const { generateToken } = require('./../Auth/auth');
 const { requireAuth } = require('./../middlewares/authMiddleware')
 const jwt = require('jsonwebtoken')
-const {JWT_SECRET_KEY} = require('./../Auth/auth')
+const { JWT_SECRET_KEY } = require('./../Auth/auth')
 
 const getAllUsers = async (req, res) => {
     try {
@@ -89,7 +89,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         console.log(req.body.email, req.body.password);
-        const user = await User.findOne({ email: req.body.email});
+        const user = await User.findOne({ email: req.body.email });
         const token = generateToken(user?._id);
         console.log(token);
         console.log(user);
