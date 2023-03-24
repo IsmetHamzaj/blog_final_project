@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { redirect } from 'react-router-dom'
 
 
 const Login = () => {
@@ -12,10 +13,15 @@ const Login = () => {
       const userEmail = await e.target.email.value
       const userPassword = await e.target.password.value
       const response = await axios.post("http://localhost:3000/api/users", {
-        userEmail,
-        userPassword
+        email: userEmail,
+        password: userPassword
       })
-      console.log(response[0])
+      console.log(response.data.data)
+      if(response.data.data) {
+        // redirect('/home')
+      } else {
+        alert("Your email or password is wrong")
+      }
     } catch (error) {
       console.log(error)
     }
