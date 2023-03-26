@@ -8,13 +8,15 @@ const Profile = () => {
 
     const response = axios.get(`http://localhost:3000/api/users/${id}`)
         .then(res => {
-            console.log(res.data.data)
+            setUser(res.data.data)
         })
         .catch(err => {
             console.log(err)
         })
     return (
-        <div></div>
+        <div>
+            <p>{user.name}</p>
+        </div>
     )
 }
 
