@@ -27,7 +27,6 @@ function App({ user }) {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-          {/* <ProtectedRoute path="/" element={<Home />} user={user} component={Home} /> */}
           <Route path='/login' element={<Login />} />
           <Route path='/profile/:id' element={<Profile />} />
         </Routes>
