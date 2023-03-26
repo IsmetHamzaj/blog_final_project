@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 
 const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
+  const navigate = useNavigate()
   const onSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -16,8 +17,8 @@ const Login = () => {
         password: userPassword
       })
       console.log(response.data.data)
-      if(response.data.data) {
-        
+      if (response.data.data) {
+        navigate('/')
       } else {
         alert("Your email or password is wrong")
       }

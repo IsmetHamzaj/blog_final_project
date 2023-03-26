@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import './Header.css'
 const Navbar = (props) => {
     const { match } = props
-    const { id } = match.params
     return (
         <nav>
             <ul>
@@ -11,7 +10,7 @@ const Navbar = (props) => {
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to={`/profile/${id}`}>Profile</Link>
+                    <Link to={`/profile/}`}>Profile</Link>
                 </li>
             </ul>
         </nav>

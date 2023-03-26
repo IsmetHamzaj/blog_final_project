@@ -38,7 +38,6 @@ const Home = () => {
 
   return (
     <div>
-      <Link to={``}>Profile</Link>
       {loading ? <p>Loading...</p> : (
         <>
           {console.log("After fetching data, loading is:", loading)}
@@ -51,7 +50,9 @@ const Home = () => {
           ))}
         </>
       )}
+      <button onClick={() => currentPage-1}>prev</button>
       <p>{currentPage}</p>
+      <button onClick={() => currentPage + 1}>next</button>
     </div>
   )
 }
