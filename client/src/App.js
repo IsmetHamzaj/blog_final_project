@@ -22,6 +22,8 @@ const ProtectedRoute = ({ user, component: Component, ...props }) => {
 
 
 function App({ user }) {
+  
+  return (
     <div className="App">
       <BrowserRouter>
         <Routes>
