@@ -5,7 +5,7 @@ import Profile from './Pages/Profile/Profile'
 
 
 
-const Routes = () => {
+const Views = () => {
     return (
         <Routes>
             <Route path='/' element={<Home />} />
@@ -14,3 +14,4 @@ const Routes = () => {
         </Routes>
     )
 }
+export default Views
