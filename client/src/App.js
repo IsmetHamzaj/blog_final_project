@@ -22,11 +22,6 @@ const ProtectedRoute = ({ user, component: Component, ...props }) => {
 
 
 function App({ user }) {
-  // const navigate = useNavigate();
-  // if(!user) {
-  //   navigate('/login')
-  // }
-  return (
     <div className="App">
       <BrowserRouter>
         <Routes>
