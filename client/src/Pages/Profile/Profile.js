@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
@@ -6,13 +6,23 @@ const Profile = () => {
     const [user, setUser] = useState({})
     const { id } = useParams()
 
-    const response = axios.get(`http://localhost:3000/api/users/${id}`)
-        .then(res => {
-            setUser(res.data.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/api/users/${id}`)
+                setUser(response.data.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        fetchUser()
+    }, [id])
+
+    if (!user._id) {
+        return <p>Loading...</p>
+    }
+
     return (
         <div>
             <p>{user.name}</p>
