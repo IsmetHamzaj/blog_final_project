@@ -3,10 +3,12 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { showLoading, hideLoading } from '../../Redux/loadingSlice'
 import blogSlice, { addBlog } from '../../Redux/blogSlice'
+import { Link, useParams } from 'react-router-dom'
 
 const Home = () => {
   const dispatch = useDispatch()
   const blogs = useSelector((state) => state.blog.blog[0])
+  const { id } = useParams()
   console.log(blogs)
   const loading = useSelector((state) => state.loading.loading)
   const [currentPage, setCurrentPage] = useState(1)
@@ -35,6 +37,7 @@ const Home = () => {
 
   return (
     <div>
+      <Link to={``}>Profile</Link>
       {loading ? <p>Loading...</p> : (
         <>
           {console.log("After fetching data, loading is:", loading)}
