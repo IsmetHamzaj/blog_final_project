@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { showLoading, hideLoading } from '../../Redux/loadingSlice'
 import blogSlice, { addBlog } from '../../Redux/blogSlice'
 import { Link, useParams } from 'react-router-dom'
+import LayOut from '../../Components/LayOut'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -54,4 +55,4 @@ const Home = () => {
     </div>
   )
 }
-export default Home
+export default LayOut(Home)
