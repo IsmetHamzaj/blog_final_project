@@ -40,7 +40,8 @@ const getUserById = async (req, res) => {
                 message: "User not found"
             })
         } else {
-            res.json(200).json({
+            res.status(200)
+            res.json({
                 status: "Success",
                 success: true,
                 data: user
