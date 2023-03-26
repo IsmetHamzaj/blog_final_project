@@ -30,7 +30,7 @@ function App({ user }) {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />
           {/* <ProtectedRoute path="/" element={<Home />} user={user} component={Home} /> */}
           <Route path='/login' element={<Login />} />
           <Route path='/profile/:id' element={<Profile />} />
