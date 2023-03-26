@@ -5,3 +5,12 @@ import Profile from './Pages/Profile/Profile'
 
 
 
+const Routes = () => {
+    return (
+        <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/profile/:id' element={<Profile />} />
+        </Routes>
+    )
+}
