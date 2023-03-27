@@ -22,3 +22,13 @@
     border: 1px solid #ddd;
     padding: 1rem;
 }
+
+.blog-title {
+    margin-top: 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
