@@ -29,11 +29,15 @@ const Login = () => {
   }
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <input type="email" placeholder='Email' name='email' onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder='password' name='password' onChange={(e) => setPassword(e.target.value)} />
-        <button type='submit'>Log in</button>
-      </form>
+      <div class="login-container">
+        <div class="login-form">
+          <form onSubmit={onSubmit}>
+            <input type="email" placeholder='Email' name='email' onChange={(e) => setEmail(e.target.value)} />
+            <input type="password" placeholder='password' name='password' onChange={(e) => setPassword(e.target.value)} />
+            <button type='submit'>Log in</button>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }
