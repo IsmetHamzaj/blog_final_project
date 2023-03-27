@@ -14,20 +14,20 @@ const Navbar = (props) => {
         </li>
         <li>Categories:</li>
         <li>
-          <ul>
-            <li>
+          <select>
+            <option>
               <Link to="/category/sports">Sports</Link>
-            </li>
-            <li>
+            </option>
+            <option>
               <Link to="/category/politics">Politics</Link>
-            </li>
-            <li>
+            </option>
+            <option>
               <Link to="/category/education">Education</Link>
-            </li>
-            <li>
+            </option>
+            <option>
               <Link to="/category/technology">Technology</Link>
-            </li>
-          </ul>
+            </option>
+          </select>
         </li>
       </ul>
     </nav>

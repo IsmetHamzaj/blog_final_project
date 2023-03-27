@@ -37,23 +37,24 @@ const Home = () => {
   }, [loading]);
 
   return (
-    <div>
+    <div className="container">
       {loading ? <p>Loading...</p> : (
-        <>
-          {console.log("After fetching data, loading is:", loading)}
+        <div className="blogs-grid">
           {blogs?.map((blog) => (
-            <div key={blog._id}>
-              <p>{blog.title}</p>
-              <p>{blog.description}</p>
-              <p>#{blog.tags}</p>
+            <div key={blog._id} className="blog-item">
+              <h2 className="blog-title">{blog.title}</h2>
+              <p className="blog-description">{blog.description}</p>
+              <div className="blog-tags">#{blog.tags}</div>
             </div>
           ))}
-        </>
+        </div>
       )}
-      <button onClick={() => currentPage-1}>prev</button>
-      <p>{currentPage}</p>
-      <button onClick={() => currentPage + 1}>next</button>
+      <div className="pagination">
+        <button onClick={() => currentPage - 1}>prev</button>
+        <p className="current-page">{currentPage}</p>
+        <button onClick={() => currentPage + 1}>next</button>
+      </div>
     </div>
-  )
+  );
 }
 export default LayOut(Home)
