@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-
+import './Login.css'
+import LayOut from '../LayOut'
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -37,4 +38,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LayOut(Login)
