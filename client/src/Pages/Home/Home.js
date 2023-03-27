@@ -5,6 +5,7 @@ import { showLoading, hideLoading } from '../../Redux/loadingSlice'
 import blogSlice, { addBlog } from '../../Redux/blogSlice'
 import { Link, useParams } from 'react-router-dom'
 import LayOut from '../../Components/LayOut'
+import './Home.css'
 
 const Home = () => {
   const dispatch = useDispatch()
