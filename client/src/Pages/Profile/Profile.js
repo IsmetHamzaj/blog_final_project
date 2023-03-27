@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { showLoading, hideLoading } from '../../Redux/loadingSlice'
 
 const Profile = () => {
     const [user, setUser] = useState({})
-    const { id } = useParams()
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await axios.get(`http://localhost:3000/api/users/${id}`)
-                setUser(response.data.data)
-            } catch (error) {
-                console.log(error)
-            }
+    const dispatch = useDispatch()
+    const params = useParams()
+    
+    const getUserData = async () => {
+        try {
+          dispatch(showLoading())
+          const response = await axios.post('/api/users/:id', { _id: params._id })
+          dispatch(hideLoading())
+          if (response.data.success) {
+            console.log(response.data.data)
+          }
+        } catch (error) {
+          dispatch(hideLoading())
         }
+      }
 
-        fetchUser()
-    }, [id])
-
+      useEffect(() => {
+        getUserData()
+      }, [])
     if (!user._id) {
         return <p>Loading...</p>
     }
