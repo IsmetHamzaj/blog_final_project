@@ -8,32 +8,42 @@ const Profile = () => {
     const [user, setUser] = useState({})
     const dispatch = useDispatch()
     const params = useParams()
-    
-    const getUserData = async () => {
-        try {
-          dispatch(showLoading())
-          const response = await axios.post('/api/users/:id', { _id: params._id })
-          dispatch(hideLoading())
-          if (response.data.success) {
-            console.log(response.data.data)
-          }
-        } catch (error) {
-          dispatch(hideLoading())
-        }
-      }
 
-      useEffect(() => {
+    const getUserData = async (id) => {
+        try {
+            dispatch(showLoading())
+            const response = await axios.post(`/api/users/${id}`, { id: params._id })
+            dispatch(hideLoading())
+            if (response.data.success) {
+                console.log(response.data.data)
+            }
+        } catch (error) {
+            dispatch(hideLoading())
+        }
+    }
+
+    useEffect(() => {
         getUserData()
-      }, [])
+    }, [])
     if (!user._id) {
         return <p>Loading...</p>
     }
 
     return (
-        <div>
-            <p>{user.name}</p>
+        <div className="profile-container">
+            <div className="profile-header">
+                <h1>My Profile</h1>
+            </div>
+            <div className="profile-body">
+                <div className="profile-info">
+                    <h2>John Doe</h2>
+                    <p>Email: john.doe@example.com</p>
+                    <p>Location: New York, NY</p>
+                    <p>Interests: React, JavaScript, Music</p>
+                </div>
+            </div>
         </div>
-    )
+    );
 }
 
 export default Profile
