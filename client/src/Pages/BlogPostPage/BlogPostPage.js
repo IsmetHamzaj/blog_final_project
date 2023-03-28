@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import BlogPost from './BlogPost';
 
 const BlogPostPage = () => {
   return (
-    <div>BlogPostPage</div>
-  )
-}
+    <BlogPost />
+  );
+};
 
-export default BlogPostPage
+export default BlogPostPage;

@@ -25,6 +25,7 @@ const Profile = () => {
     useEffect(() => {
         getUserData()
     }, [])
+    
     if (!user._id) {
         return <p>Loading...</p>
     }
