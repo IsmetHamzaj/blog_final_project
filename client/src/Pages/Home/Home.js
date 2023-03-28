@@ -11,7 +11,6 @@ const Home = () => {
   const dispatch = useDispatch()
   const blogs = useSelector((state) => state.blog.blog[0])
   const { id } = useParams()
-  console.log(blogs)
   const loading = useSelector((state) => state.loading.loading)
   const [currentPage, setCurrentPage] = useState(1)
   const [BlogsPerPage, setBlogsPerPage] = useState(12)
@@ -19,23 +18,17 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(showLoading());
-    console.log("Before fetching data, loading is:", loading);
     axios.get("http://localhost:3000/api/blogs")
       .then((response) => {
         const blogs = response.data.data;
         dispatch(addBlog(blogs));
         dispatch(hideLoading());
-        console.log("After fetching data, loading is:", loading);
       })
       .catch((error) => {
         dispatch(hideLoading());
         console.error(error);
       });
   }, []);
-
-  useEffect(() => {
-    console.log('loading:', loading);
-  }, [loading]);
 
   return (
     <div className="container">

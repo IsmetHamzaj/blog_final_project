@@ -90,8 +90,7 @@ const login = async (req, res) => {
         console.log(req.body.email, req.body.password);
         const user = await User.findOne({ email: req.body.email });
         const token = generateToken(user?._id);
-        console.log(token);
-        console.log(user);
+        
         if (!user) {
             return res.status(404).json({ message: "Invalid email or password", success: false });
         }

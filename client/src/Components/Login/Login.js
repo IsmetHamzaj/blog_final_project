@@ -17,8 +17,8 @@ const Login = () => {
         email: userEmail,
         password: userPassword
       })
-      console.log(response.data.data)
       if (response.data.data) {
+        localStorage.setItem("token", response.data.data)
         navigate('/')
       } else {
         alert("Your email or password is wrong")
