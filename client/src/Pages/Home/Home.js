@@ -42,8 +42,8 @@ const Home = () => {
       {loading ? <p>Loading...</p> : (
         <div className="blogs-grid">
           {blogs?.map((blog) => (
-            <Link key={blog._id} to={`api/blogs/${blog._id}`}>
-              <div className='blog-item'>
+            <Link to={`/blogs/${blog._id}`}>
+              <div key={blog._id} className='blog-item'>
                 <h2 className="blog-title">{blog.title}</h2>
                 <p className="blog-description">{blog.description}</p>
                 <div className="blog-tags">#{blog.tags}</div>

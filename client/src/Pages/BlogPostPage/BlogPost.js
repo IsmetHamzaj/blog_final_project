@@ -7,33 +7,34 @@ import { useDispatch } from 'react-redux';
 const BlogPost = () => {
     const { id } = useParams();
     const dispatch = useDispatch()
-    const [blogPost, setBlogPost] = useState(null);
+    const [blogPost, setBlogPost] = useState({});
     
 
     useEffect(() => {
         dispatch(showLoading())
         axios.get(`http://localhost:3000/api/blogs/${id}`)
             .then((response) => {
-                setBlogPost(response.data.data);
+                console.log(response.data.data);
+                setBlogPost(response.data.data)
                 dispatch(hideLoading());
             })
             .catch((error) => {
                 console.error(error);
-                setLoading(hideLoading());
+                dispatch(hideLoading());
             });
     }, [id]);
 
     return (
         <div>
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <div>
-                    <h1>{blogPost.title}</h1>
-                    <p>{blogPost.description}</p>
-                    <p>{blogPost.content}</p>
-                </div>
-            )}
+           {
+            blogPost.map((blog) => {
+                return(
+                    <div>
+                        <p>{blog[0].desription}</p>
+                    </div>
+                )
+            })
+           }
         </div>
     );
 };
