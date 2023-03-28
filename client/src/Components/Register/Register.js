@@ -1,36 +1,75 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import toast from 'react-hot-toast'
-import { hideLoading, showLoading } from '../../Redux/loadingSlice'
-import axios from 'axios'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { hideLoading, showLoading } from '../../Redux/loadingSlice';
+import axios from 'axios';
 
 const Register = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const onFinish = async () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    username: '',
+    email: '',
+    password: ''
+  });
+
+  const onFinish = async (e) => {
+    e.preventDefault();
+
     try {
-      dispatch(showLoading())
-      const response = await axios.post('/api/users/register')
-      dispatch(hideLoading())
-      if (response.data.data) {
-        toast.success(response.data.message)
-        navigate('/login')
+      dispatch(showLoading());
+
+      const response = await axios.post('http://localhost:3000/api/users/register', userData);
+
+      dispatch(hideLoading());
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        navigate('/login');
       } else {
-        toast.error(response.data.message)
+        toast.error(response.data.message);
       }
     } catch (error) {
-      dispatch(hideLoading())
-      toast.error("Something went wrong")
+      dispatch(hideLoading());
+      toast.error('Something went wrong');
     }
-  }
+  };
+
+
+
   return (
     <div>
       <form onSubmit={onFinish}>
-        <button type='submit'>here</button>
+        <input
+          type='text'
+          name='name'
+          onChange={(e) =>
+            setUserData({ ...userData, username: e.target.value })
+          }
+          placeholder='Username'
+        />
+        <input
+          type='text'
+          name='email'
+          onChange={(e) =>
+            setUserData({ ...userData, email: e.target.value })
+          }
+          placeholder='Email'
+        />
+        <input
+          type='password'
+          name='password'
+          onChange={(e) =>
+            setUserData({ ...userData, password: e.target.value })
+          }
+          placeholder='Password'
+        />
+
+        <button type='submit'>Register</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
