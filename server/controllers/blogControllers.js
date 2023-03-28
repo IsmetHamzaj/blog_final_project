@@ -35,28 +35,29 @@ const getAllBlogs = async (req, res) => {
 
 const getBlogById = async (req, res) => {
     try {
-        const blogPost = await Blog.findById(req.params.id)
+        const blogPost = await Blog.findById(req.params.id);
         if (!blogPost) {
-            res.status(404).json({
+            return res.status(404).json({
                 status: "Success",
                 success: true,
                 message: "Blog post not found"
-            })
-        } else {
-            res.json(200).json({
-                status: "Success",
-                success: true,
-                data: blogPost
-            })
+            });
         }
+        res.status(200).json({
+            status: "Success",
+            success: true,
+            data: blogPost
+        });
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             status: "Failed",
             success: false,
             message: error
-        })
+        });
     }
-}
+};
+
 
 
 const createBlog = async (req, res) => {
