@@ -4,6 +4,7 @@ import Login from './Components/Login/Login'
 import Profile from './Pages/Profile/Profile'
 import BlogPost from './Pages/BlogPostPage/BlogPost'
 import BlogPostPage from './Pages/BlogPostPage/BlogPostPage'
+import Register from './Components/Register/Register'
 
 
 
@@ -14,6 +15,7 @@ const Views = () => {
             <Route path='/login' element={<Login />} />
             <Route path='/profile/:id' element={<Profile />} />
             <Route path='/blog/:id' element={<BlogPost />} />
+            <Route path='/register' element={<Register />} />
         </Routes>
     )
 }
