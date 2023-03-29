@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import './Login.css'
 import LayOut from '../LayOut'
 import toast from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { hideLoading, showLoading } from '../../Redux/loadingSlice'
 
 const Login = () => {
