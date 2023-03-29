@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import './Login.css'
 import LayOut from '../LayOut'
+import toast from 'react-hot-toast'
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -18,14 +19,15 @@ const Login = () => {
         password: userPassword
       })
       if (response.data.data) {
-        console.log(response.data.data)
-        // localStorage.setItem("token", response.data.data)
+        toast.success(response.data.success)
+        toast("Redirecting to homepage")
+        localStorage.setItem("token", response.data.data)
         navigate('/')
       } else {
-        alert("Your email or password is wrong")
+        toast.error(response.data.message)
       }
     } catch (error) {
-      console.log(error)
+      toast.error("Something went wrong")
     }
   }
   return (

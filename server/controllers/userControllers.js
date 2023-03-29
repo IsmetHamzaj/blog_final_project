@@ -93,7 +93,6 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        console.log(req.body.email, req.body.password);
         const user = await User.findOne({ email: req.body.email });
         const token = generateToken(user?._id);
 
@@ -109,7 +108,7 @@ const login = async (req, res) => {
             const token = jwt.sign({ id: user._id }, JWT_SECRET_KEY, { expiresIn: "1h" })
             res
                 .status(200)
-                .send({ message: "Login successfully", success: true, data: user })
+                .send({ message: "Login successfully", success: true, data: token })
         }
     } catch (error) {
         console.log(error);
