@@ -18,7 +18,9 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(showLoading());
-    axios.get("http://localhost:3000/api/blogs")
+    axios.get("http://localhost:3000/api/blogs", {}, {
+      headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+    })
       .then((response) => {
         const blogs = response.data.data;
         dispatch(addBlog(blogs));
