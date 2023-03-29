@@ -21,7 +21,7 @@ const Register = () => {
       dispatch(showLoading());
       console.log(userData)
       const response = await axios.post('http://localhost:3000/api/users/register', userData);
-
+      console.log(response.data)
       dispatch(hideLoading());
 
       if (response.data.success) {
