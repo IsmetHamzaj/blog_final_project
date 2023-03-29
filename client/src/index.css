@@ -1,0 +1,19 @@
+.spinner-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.40);
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    z-index: 9999;
+}
+
+.spinner-border {
+    width: 5rem;
+    height: 5rem;
+    color: white !important;
+}

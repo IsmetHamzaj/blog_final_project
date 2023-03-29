@@ -11,7 +11,7 @@ const Home = () => {
   const dispatch = useDispatch()
   const blogs = useSelector((state) => state.blog.blog[0])
   const { id } = useParams()
-  const loading = useSelector((state) => state.loading.loading)
+  const loading = useSelector((state) => state.alerts)
   const [currentPage, setCurrentPage] = useState(1)
   const [BlogsPerPage, setBlogsPerPage] = useState(12)
 

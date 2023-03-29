@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
-import loadingReducer from './loadingSlice'
+import { alertsSlice } from './loadingSlice'
 import blogReducer from './blogSlice'
 
 const rootReducer = combineReducers({
-    loading: loadingReducer,
+    loading: alertsSlice,
     blog: blogReducer
 })
 
