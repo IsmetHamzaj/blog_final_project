@@ -58,6 +58,7 @@ const getUserById = async (req, res) => {
 
 const register = async (req, res) => {
     try {
+        console.log(req.body)
         const userExists = await User.findOne({ email: req.body.email })
         if (userExists) {
             return res
@@ -68,21 +69,26 @@ const register = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt)
         req.body.password = hashedPassword
+        req.body.name = req.body.name
+
         const newUser = new User(req.body)
         await newUser.save()
+        console.log(newUser)
         res.status(200).json({
             message: "User created successfully",
             success: true,
             data: newUser
         })
+        console.log(newUser)
     } catch (error) {
         res.status(500).json({
             status: "Failed",
-            succes: false,
+            success: false,
             message: error
         })
     }
 }
+
 
 
 const login = async (req, res) => {
@@ -90,7 +96,7 @@ const login = async (req, res) => {
         console.log(req.body.email, req.body.password);
         const user = await User.findOne({ email: req.body.email });
         const token = generateToken(user?._id);
-        
+
         if (!user) {
             return res.status(404).json({ message: "Invalid email or password", success: false });
         }

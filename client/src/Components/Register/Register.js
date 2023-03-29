@@ -9,7 +9,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
-    username: '',
+    name: '',
     email: '',
     password: ''
   });
@@ -19,7 +19,7 @@ const Register = () => {
 
     try {
       dispatch(showLoading());
-
+      console.log(userData)
       const response = await axios.post('http://localhost:3000/api/users/register', userData);
 
       dispatch(hideLoading());
@@ -32,7 +32,7 @@ const Register = () => {
       }
     } catch (error) {
       dispatch(hideLoading());
-      toast.error('Something went wrong');
+      console.log(error.response.data)
     }
   };
 
@@ -45,7 +45,7 @@ const Register = () => {
           type='text'
           name='name'
           onChange={(e) =>
-            setUserData({ ...userData, username: e.target.value })
+            setUserData({ ...userData, name: e.target.value })
           }
           placeholder='Username'
         />
