@@ -5,13 +5,14 @@ import Profile from './Pages/Profile/Profile'
 import BlogPost from './Pages/BlogPostPage/BlogPost'
 import BlogPostPage from './Pages/BlogPostPage/BlogPostPage'
 import Register from './Components/Register/Register'
+import ProtectedRoutes from './ProtectedRoutes'
 
 
 
 const Views = () => {
     return (
         <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
             <Route path='/login' element={<Login />} />
             <Route path='/profile/:id' element={<Profile />} />
             <Route path='/blog/:id' element={<BlogPost />} />
