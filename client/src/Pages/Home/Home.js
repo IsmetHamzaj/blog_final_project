@@ -48,9 +48,9 @@ const Home = () => {
         </div>
       )}
       <div className="pagination">
-        <button onClick={() => currentPage - 1}>prev</button>
+        <button onClick={() => setCurrentPage(currentPage - 1)}>prev</button>
         <p className="current-page">{currentPage}</p>
-        <button onClick={() => currentPage + 1}>next</button>
+        <button onClick={() => setCurrentPage(currentPage + 1)}>next</button>
       </div>
     </div>
   );
