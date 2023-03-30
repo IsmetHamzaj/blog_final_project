@@ -5,25 +5,21 @@
 }
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto 1fr auto;
-    grid-gap: 1rem;
+    max-width: 95vw;
     margin: 2rem;
     min-height: 100vh;
 }
 
 .blogs-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3rem;
 }
 
 .blog-item {
     border: 1px solid #ddd;
     padding: 1rem;
 }
-
 .blog-title {
     margin-top: 0;
 }
