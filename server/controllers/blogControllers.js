@@ -7,18 +7,11 @@ const getAllBlogs = async (req, res) => {
     const totalPages = Math.ceil(totalPosts / pageSize)
 
     await Blog.find()
-        .sort({ data: -1 })
-        .skip((page - 1) * pageSize)
-        .limit(pageSize)
-        .exec()
         .then((blogs) => {
             if (blogs.length > 0) {
                 res.status(200).json({
                     status: "Success",
-                    data: blogs,
-                    currentPage: page,
-                    totalPages: totalPages,
-                    totalPosts: totalPosts,
+                    data: blogs
                 })
             } else {
                 res.status(404).json({

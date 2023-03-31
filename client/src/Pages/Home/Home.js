@@ -6,6 +6,7 @@ import blogSlice, { addBlog } from '../../Redux/blogSlice'
 import { Link, useParams } from 'react-router-dom'
 import LayOut from '../../Components/LayOut'
 import './Home.css'
+import Pagination from '../../Components/Pagination'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -13,7 +14,7 @@ const Home = () => {
   const { id } = useParams()
   const loading = useSelector((state) => state.alerts)
   const [currentPage, setCurrentPage] = useState(1)
-  const [BlogsPerPage, setBlogsPerPage] = useState(12)
+  const [BlogsPerPage, setBlogsPerPage] = useState(10)
 
 
   useEffect(() => {
@@ -32,11 +33,17 @@ const Home = () => {
       });
   }, []);
 
+  const indexOfLastBlog = currentPage * BlogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - BlogsPerPage;
+  const currentBlogs = blogs ? blogs.slice(indexOfFirstBlog, indexOfLastBlog) : []
+
+  const paginate = pageNumber => setCurrentPage(pageNumber)
+
   return (
     <div className="container">
       {loading ? <p>Loading...</p> : (
         <div className="blogs-grid">
-          {blogs?.map((blog) => (
+          {blogs && blogs?.map((blog) => (
             <Link to={`/blogs/${blog._id}`}>
               <div key={blog._id} className='blog-item'>
                 <h2 className="blog-title">{blog.title}</h2>
@@ -48,9 +55,7 @@ const Home = () => {
         </div>
       )}
       <div className="pagination">
-        <button onClick={() => setCurrentPage(currentPage - 1)}>prev</button>
-        <p className="current-page">{currentPage}</p>
-        <button onClick={() => setCurrentPage(currentPage + 1)}>next</button>
+        <Pagination BlogsPerPage={BlogsPerPage} totalBlogs={blogs?.length} paginate={paginate} currentPage={currentPage} />
       </div>
     </div>
   );
