@@ -14,7 +14,7 @@ const Home = () => {
   const { id } = useParams()
   const loading = useSelector((state) => state.alerts)
   const [currentPage, setCurrentPage] = useState(1)
-  const [BlogsPerPage, setBlogsPerPage] = useState(10)
+  const [BlogsPerPage, setBlogsPerPage] = useState(25)
 
 
   useEffect(() => {
@@ -40,22 +40,26 @@ const Home = () => {
   const paginate = pageNumber => setCurrentPage(pageNumber)
 
   return (
-    <div className="container">
-      {loading ? <p>Loading...</p> : (
-        <div className="blogs-grid">
-          {blogs && blogs?.map((blog) => (
-            <Link to={`/blogs/${blog._id}`}>
-              <div key={blog._id} className='blog-item'>
-                <h2 className="blog-title">{blog.title}</h2>
-                <p className="blog-description">{blog.description}</p>
-                <div className="blog-tags">#{blog.tags}</div>
-              </div>
-            </Link>
-          ))}
+    <div>
+      <div className="container">
+        <div className='grids'>
+          {loading ? <p>Loading...</p> : (
+            <div className="blogs-grid">
+              {blogs && currentBlogs?.map((blog) => (
+                <Link to={`/blogs/${blog._id}`} className="link-div">
+                  <div key={blog._id} className='blog-item'>
+                    <h2 className="blog-title">{blog.title}</h2>
+                    <p className="blog-description">{blog.description}</p>
+                    <div className="blog-tags">#{blog.tags}</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
-      )}
-      <div className="pagination">
-        <Pagination BlogsPerPage={BlogsPerPage} totalBlogs={blogs?.length} paginate={paginate} currentPage={currentPage} />
+        <div className="pagination">
+          <Pagination BlogsPerPage={BlogsPerPage} totalBlogs={blogs?.length} paginate={paginate} currentPage={currentPage} />
+        </div>
       </div>
     </div>
   );

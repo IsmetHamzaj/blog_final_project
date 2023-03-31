@@ -8,13 +8,13 @@ const Pagination = ({ BlogsPerPage, totalBlogs, paginate, currentPage }) => {
     }
     console.log(pageNumbers)
     return (
-        <nav>
+        <nav style={{backgroundColor: "white"}}>
             <ul className='ul-links'>
                 {
                     pageNumbers.map((number) => {
                         return (
                             <li key={number}>
-                                <a onClick={() => paginate(number)} href='#'>{number}</a>
+                                <a onClick={() => paginate(number)} href='#' style={{color: "black"}}>{number}</a>
                             </li>
                         )
                     })

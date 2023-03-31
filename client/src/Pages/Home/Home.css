@@ -12,24 +12,49 @@
 
 .blogs-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .blog-item {
     border: 1px solid #ddd;
     padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
+
 .blog-title {
     margin-top: 0;
 }
 
+.ul_links {
+    color: purple;
+}
+.blog-tags {
+    margin-top: 1rem;
+}
+
 .pagination {
-    grid-column: 1 / -1;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1rem 0;
+    background-color: white;
+}
+.link-div{
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.link-div:hover {
+    color: black;
 }
 
 .current-page {
@@ -40,15 +65,9 @@ button {
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.25rem;
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: #fff;
     font-size: 1rem;
     font-weight: 600;
-    margin: 0.5rem;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-
-button:hover {
-    background-color: #2F7F2F;
+    margin: 10px;
 }
