@@ -11,6 +11,7 @@ import Pagination from '../../Components/Pagination'
 const Home = () => {
   const dispatch = useDispatch()
   const blogs = useSelector((state) => state.blog.blog[0])
+  console.log(blogs)
   const { id } = useParams()
   const loading = useSelector((state) => state.alerts)
   const [currentPage, setCurrentPage] = useState(1)
@@ -18,7 +19,7 @@ const Home = () => {
   useEffect(() => {
     const com = [
       {
-        id: 1,
+        id: "641a07ae6aeaf58fa620be14",
         description: "hiiidasdasdddddddddddddddddddddddddddddddd"
       },
       {
@@ -36,11 +37,8 @@ const Home = () => {
 
   const [comments, setComments] = useState([])
   const [com, setCom] = useState(false)
-  console.log(comments)
-
+  console.log(com)
   function GetComments() {
-
-
     return (
       <div>
         {
@@ -72,6 +70,14 @@ const Home = () => {
       });
   }, []);
 
+  function DisplayComments({ blogId }) {
+    if (blogId === String(comments[0].id)) {
+      return (<GetComments />)
+    } else {
+      return null
+    }
+  }
+
   const indexOfLastBlog = currentPage * BlogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - BlogsPerPage;
   const currentBlogs = blogs ? blogs.slice(indexOfFirstBlog, indexOfLastBlog) : []
@@ -96,10 +102,8 @@ const Home = () => {
                   <button onClick={() => setCom(!com)}>See Comments</button>
                   {
                     com ? (
-                      <GetComments />
-                    ) : (
-                      null
-                    )
+                      <DisplayComments blogId={blog?._id} />
+                    ) : null
                   }
                 </div>
               ))}
