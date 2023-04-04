@@ -15,7 +15,7 @@ const Home = () => {
   const { id } = useParams()
   const loading = useSelector((state) => state.alerts)
   const [currentPage, setCurrentPage] = useState(1)
-  const [BlogsPerPage, setBlogsPerPage] = useState(25)
+  const [BlogsPerPage, setBlogsPerPage] = useState(10)
   useEffect(() => {
     const com = [
       {
@@ -23,8 +23,8 @@ const Home = () => {
         description: "hiiidasdasdddddddddddddddddddddddddddddddd"
       },
       {
-        id: 2,
-        description: "hiiiidsaaaaaaaaaaaaaaaaaaaaa"
+        id: "6428a286f403b90d09ed3135",
+        description: "ismet"
       },
       {
         id: 3,
@@ -37,8 +37,9 @@ const Home = () => {
 
   const [comments, setComments] = useState([])
   const [com, setCom] = useState(false)
+  const [blogComments, setBlogComments] = useState({})
   console.log(com)
-  function GetComments() {
+  function GetComments({ comments }) {
     return (
       <div>
         {
@@ -71,8 +72,9 @@ const Home = () => {
   }, []);
 
   function DisplayComments({ blogId }) {
-    if (blogId === String(comments[0].id)) {
-      return (<GetComments />)
+    const blogComments = comments.filter(comment => comment.id === blogId);
+    if (blogId === String(comments[1].id)) {
+      return (<GetComments comments={blogComments} />)
     } else {
       return null
     }
@@ -99,11 +101,13 @@ const Home = () => {
                       <div className="blog-tags">#{blog.tags}</div>
                     </div>
                   </Link>
-                  <button onClick={() => setCom(!com)}>See Comments</button>
+                  <button onClick={() => setBlogComments(prevState => ({ ...prevState, [blog._id]: !prevState[blog._id] }))}>
+                    {blogComments[blog._id] ? 'Hide Comments' : 'See Comments'}
+                  </button>
                   {
-                    com ? (
-                      <DisplayComments blogId={blog?._id} />
-                    ) : null
+                    blogComments[blog._id] ? (
+                      <DisplayComments blogId={blog._id} />
+                    ) : (<p>no comments</p>)
                   }
                 </div>
               ))}
@@ -117,4 +121,7 @@ const Home = () => {
     </div>
   );
 }
+
+//id e blogit o global
+
 export default LayOut(Home)

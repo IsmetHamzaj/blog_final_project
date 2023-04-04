@@ -52,4 +52,15 @@ const getCommentById = async (req, res) => {
 }
 
 
+const createComments = async (req, res) => {
+    try {
+        const newComment = await Comments.create({
+            content: req.body.content,
+            blogId: req.params.blogId
+        })
+    } catch (error) {
+        
+    }
+}
+
 module.exports = {getAllComments, getCommentById}
