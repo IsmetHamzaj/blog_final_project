@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const {getAllComments, getCommentById} = require('./../controllers/commentsController')
+const {getAllComments, getCommentById, createComments} = require('./../controllers/commentsController')
 
 
-router.route("/").get(getAllComments)
+router.route("/").get(getAllComments).post(createComments)
 router.route("/:id").get(getCommentById)
 
 

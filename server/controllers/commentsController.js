@@ -4,7 +4,7 @@ const Comments = require('./../models/commentsModel')
 const getAllComments = async (req, res) => {
     try {
         const comments = await Comments.find()
-        if(comments.length > 0) {
+        if (comments.length > 0) {
             res.status(200).json({
                 status: "Success",
                 success: true,
@@ -29,7 +29,7 @@ const getAllComments = async (req, res) => {
 const getCommentById = async (req, res) => {
     try {
         const comment = await Comments.findById(req.params.id)
-        if(!comment) {
+        if (!comment) {
             res.status(404).json({
                 status: "Success",
                 success: true,
@@ -56,11 +56,21 @@ const createComments = async (req, res) => {
     try {
         const newComment = await Comments.create({
             content: req.body.content,
-            blogId: req.params.blogId
+            blogId: req.body.blogId
+        })
+        res.status(200).json({
+            status: "Success",
+            success: true,
+            message: "Here is the data",
+            data: newComment
         })
     } catch (error) {
-        
+        res.status(500).json({
+            status: "Failed",
+            succes: false,
+            message: error
+        })
     }
 }
 
-module.exports = {getAllComments, getCommentById}
+module.exports = { getAllComments, getCommentById, createComments }
