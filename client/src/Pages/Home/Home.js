@@ -79,14 +79,32 @@ const Home = () => {
   }
 
   function CreateComment() {
+    const [content, setContent] = useState("")
+    const [blogId, setBlogId] = useState("")
+    const onSubmit = async (e) => {
+      e.preventDefault()
+      try {
+        dispatch(showLoading())
+        const commentContent = await e.target.content.value
+        const commentBlogId = await e.target.blogId.value
+        const response = await axios.post("http://localhost:3000/api/comments", {
+          content: commentContent,
+          blogId: commentBlogId
+        })
+      } catch (error) {
+        
+      }
+    }
     return (
       <div>
         <form>
-          <input type='text' placeholder='Comment...' />
+          <input type='text' name='content' placeholder='Comment...' />
+          <input type='text' name='blogId' placeholder='Blog ID...' />
         </form>
       </div>
     )
   }
+
 
 
 
