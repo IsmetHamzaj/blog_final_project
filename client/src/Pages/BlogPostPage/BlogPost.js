@@ -33,6 +33,7 @@ const BlogPost = () => {
                 <div key={blogPost._id}>
                     <p>{blogPost.description}</p>
                     <p>{blogPost.title}</p>
+                    <p>{blogPost.tags}</p>
                 </div>
             )}
         </div>
