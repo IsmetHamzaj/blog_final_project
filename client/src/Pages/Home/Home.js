@@ -135,7 +135,7 @@ const Home = () => {
             <div className="blogs-grid">
               {blogs && currentBlogs?.map((blog) => (
                 <div>
-                  <Link to={`/blogs/${blog._id}`} className="link-div">
+                  <Link to={`/blog/${blog._id}`} className="link-div">
                     <div key={blog._id} className='blog-item'>
                       <h2 className="blog-title">{blog.title}</h2>
                       <p className="blog-description">{blog.description}</p>
