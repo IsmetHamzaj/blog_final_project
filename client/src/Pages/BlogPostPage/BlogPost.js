@@ -23,6 +23,8 @@ const BlogPost = () => {
             });
     }, [id]);
 
+    console.log(id)
+
     return (
         <div>
             {Object.keys(blogPost).length === 0 ? (
