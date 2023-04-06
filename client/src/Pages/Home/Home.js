@@ -7,6 +7,7 @@ import { Link, useParams } from 'react-router-dom'
 import LayOut from '../../Components/LayOut'
 import './Home.css'
 import Pagination from '../../Components/Pagination'
+import { toast } from 'react-hot-toast'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -82,7 +83,6 @@ const Home = () => {
     const [content, setContent] = useState("")
     const [blogId, setBlogId] = useState("")
     const onSubmit = async (e) => {
-      e.preventDefault()
       try {
         dispatch(showLoading())
         const commentContent = await e.target.content.value
@@ -91,15 +91,23 @@ const Home = () => {
           content: commentContent,
           blogId: commentBlogId
         })
+        dispatch(hideLoading())
+        if (response.data.data) {
+          toast("Comment done")
+        } else {
+          toast.error(response.data.message)
+        }
       } catch (error) {
-        
+        dispatch(hideLoading())
+        toast.error("Something went wrong")
       }
     }
     return (
       <div>
-        <form>
+        <form onSubmit={onSubmit}>
           <input type='text' name='content' placeholder='Comment...' />
           <input type='text' name='blogId' placeholder='Blog ID...' />
+          <button type='submit'>Post Comment</button>
         </form>
       </div>
     )
@@ -108,7 +116,7 @@ const Home = () => {
 
 
 
-  
+
   //Pagination
   const indexOfLastBlog = currentPage * BlogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - BlogsPerPage;
@@ -134,14 +142,13 @@ const Home = () => {
                       <div className="blog-tags">#{blog.tags}</div>
                     </div>
                   </Link>
-                  <CreateComment />
                   <button onClick={() => setBlogComments(prevState => ({ ...prevState, [blog._id]: !prevState[blog._id] }))}>
                     {blogComments[blog._id] ? 'Hide Comments' : 'See Comments'}
                   </button>
                   {
                     blogComments[blog._id] ? (
                       <DisplayComments blogId={blog._id} />
-                    ) : null
+                    ) : (<CreateComment />)
                   }
                 </div>
               ))}
