@@ -14,38 +14,11 @@ const Home = () => {
   const loading = useSelector((state) => state.alerts)
   const [currentPage, setCurrentPage] = useState(1)
   const [BlogsPerPage, setBlogsPerPage] = useState(10)
-
-
-
   const [comments, setComments] = useState([])
   const [blogComments, setBlogComments] = useState({})
-  // console.log(com)
-  function GetComments({ comments }) {
-    return (
-      <div>
-        {
-          comments?.map((f) => {
-            return (
-              <div key={f._id}>
-                <p>{f.content}</p>
-              </div>
-            )
-          })
-        }
-      </div>
-    )
-  }
 
-  function CreateComment() {
-    return (
-      <div>
-        <form>
-          <input type='text' placeholder='Comment...' />
-        </form>
-      </div>
-    )
-  }
 
+  //Calls for blog and comments
   useEffect(() => {
     axios.get("http://localhost:3000/api/comments", {}, {
       headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
@@ -75,6 +48,26 @@ const Home = () => {
       });
   }, []);
 
+
+  // console.log(com)
+
+  //Handle comments functions
+  function GetComments({ comments }) {
+    return (
+      <div>
+        {
+          comments?.map((f) => {
+            return (
+              <div key={f._id}>
+                <p>{f.content}</p>
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
+
   function DisplayComments({ blogId }) {
     const blogComments = comments.filter(comment => comment?.blogId === blogId);
     // console.log(blogComments)
@@ -85,11 +78,28 @@ const Home = () => {
     }
   }
 
+  function CreateComment() {
+    return (
+      <div>
+        <form>
+          <input type='text' placeholder='Comment...' />
+        </form>
+      </div>
+    )
+  }
+
+
+
+  
+  //Pagination
   const indexOfLastBlog = currentPage * BlogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - BlogsPerPage;
   const currentBlogs = blogs ? blogs.slice(indexOfFirstBlog, indexOfLastBlog) : []
 
   const paginate = pageNumber => setCurrentPage(pageNumber)
+
+
+  //The interface
 
   return (
     <div>
