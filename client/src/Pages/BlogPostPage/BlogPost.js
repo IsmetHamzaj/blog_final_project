@@ -6,16 +6,15 @@ import { useDispatch } from 'react-redux';
 
 const BlogPost = () => {
     const { id } = useParams();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [blogPost, setBlogPost] = useState({});
-    
 
     useEffect(() => {
-        dispatch(showLoading())
+        dispatch(showLoading());
         axios.get(`http://localhost:3000/api/blogs/${id}`)
             .then((response) => {
                 console.log(response.data.data);
-                setBlogPost(response.data.data)
+                setBlogPost(response.data.data);
                 dispatch(hideLoading());
             })
             .catch((error) => {
@@ -26,17 +25,18 @@ const BlogPost = () => {
 
     return (
         <div>
-           {
-            blogPost.map((blog) => {
-                return(
-                    <div>
-                        <p>{blog[0].desription}</p>
-                    </div>
-                )
-            })
-           }
+            {Object.keys(blogPost).length === 0 ? (
+                <div>Loading...</div>
+            ) : (
+                <div key={blogPost._id}>
+                    <p>{blogPost.description}</p>
+                    <p>{blogPost.title}</p>
+                </div>
+            )}
         </div>
     );
+
+
 };
 
 export default BlogPost;
