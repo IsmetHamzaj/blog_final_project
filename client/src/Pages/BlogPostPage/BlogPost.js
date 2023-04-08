@@ -9,7 +9,8 @@ const BlogPost = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const [blogPost, setBlogPost] = useState({});
-    const [comments, setComments] = useState({})
+    const [comments, setComments] = useState([])
+
 
     useEffect(() => {
         axios.get("http://localhost:3000/api/comments", {}, {
@@ -38,22 +39,24 @@ const BlogPost = () => {
             });
     }, [id]);
 
-    function GetComments({ comments }) {
+    function GetComments() {
         return (
             <div>
-                {Object.keys(comments).length === 0 ? (
-                    <div>Loading...</div>
-                ) : (
-                    <div key={comments._id}>
-                        <p>{comments.content}</p>
-                    </div>
-                )}
+                {
+                    comments.map((com) => {
+                        return (
+                            <div key={com._id}>
+                                <p>{com.content}</p>
+                            </div>
+                        )
+                    })
+                }
             </div>
         )
     }
 
     function DisplayComments() {
-        const blogComments = comments.filter(comment => comment?._id === id);
+        const blogComments = comments.filter(comment => comment.blogId === id);
         console.log(blogComments)
         // console.log(blogComments)
         if (blogComments.length > 0) {
@@ -97,22 +100,23 @@ const BlogPost = () => {
         )
     }
 
-
-    console.log(id)
-
     return (
-        <div>
+        <div className='blog-post-container"'>
             {Object.keys(blogPost).length === 0 ? (
                 <div>Loading...</div>
             ) : (
                 <div key={blogPost._id}>
-                    <p>{blogPost.description}</p>
-                    <p>{blogPost.title}</p>
-                    <p>{blogPost.tags}</p>
+                    <p className='blog-post-description'>{blogPost.description}</p>
+                    <p className='blog-post-title'>{blogPost.title}</p>
+                    <p className='blog-post-tags'>{blogPost.tags}</p>
                 </div>
             )}
-            <DisplayComments />
-            <CreateComment />
+            <div className='comments-container'>
+                <DisplayComments blogId={blogPost._id} />
+            </div>
+            <div className='comment-form'>
+                <CreateComment />
+            </div>
         </div>
     );
 
