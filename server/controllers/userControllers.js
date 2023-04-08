@@ -33,6 +33,9 @@ const getAllUsers = async (req, res) => {
 const getUserById = async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
+        console.log(User.findById(req.params.id))
+        console.log(user)
+        console.log(req.params.id)
         if (!user) {
             return res.status(404).json({
                 status: "Success",
@@ -46,11 +49,12 @@ const getUserById = async (req, res) => {
             data: user
         })
     } catch (error) {
-        res.status(500).json({
-            status: "Failed",
-            success: false,
-            message: error
-        })
+        console.log(error)
+        // res.status(500).json({
+        //     status: "Failed",
+        //     success: false,
+        //     message: error
+        // })
     }
 }
 

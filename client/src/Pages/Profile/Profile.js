@@ -3,30 +3,39 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { showLoading, hideLoading } from '../../Redux/loadingSlice'
+import LayOut from '../../Components/LayOut'
 
-const Profile = () => {
+const ProfileWrapper = () => {
+    const { id } = useParams()
+    console.log(JSON.stringify(id))
+    return <Profile id={id} />
+}
+
+const Profile = ({ id }) => {
     const [user, setUser] = useState({})
     const dispatch = useDispatch()
-    const params = useParams()
-
-    const getUserData = async (id) => {
+    console.log(id)
+    const getUserData = async () => {
         try {
             dispatch(showLoading())
-            const response = await axios.post(`/api/users/${id}`, { id: params._id })
+            const response = await axios.get(`http://localhost:3000/api/users/${id}`, {
+                headers: { Authorization: `Bearer ` + localStorage.getItem('token') }
+            })
+            console.log(response)
             dispatch(hideLoading())
-            if (response.data.success) {
-                console.log(response.data.data)
-            }
+            setUser(response.data.data)
         } catch (error) {
+            console.log(error)
             dispatch(hideLoading())
         }
     }
 
+
     useEffect(() => {
         getUserData()
     }, [])
-    
-    if (!user._id) {
+
+    if (!user.id) {
         return <p>Loading...</p>
     }
 
@@ -37,14 +46,14 @@ const Profile = () => {
             </div>
             <div className="profile-body">
                 <div className="profile-info">
-                    <h2>John Doe</h2>
-                    <p>Email: john.doe@example.com</p>
-                    <p>Location: New York, NY</p>
-                    <p>Interests: React, JavaScript, Music</p>
+                    <h2>{user.name}</h2>
+                    <p>Email: {user.email}</p>
+                    <p>Location: {user.location}</p>
+                    <p>Interests: {user.interests}</p>
                 </div>
             </div>
         </div>
     );
 }
 
-export default Profile
+export default LayOut(ProfileWrapper)

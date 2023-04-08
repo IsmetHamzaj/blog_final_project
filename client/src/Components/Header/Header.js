@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css'
+
 const Navbar = (props) => {
-    const { match } = props
-    return (
-        <nav>
+  const { id } = props
+  return (
+    <nav>
       <ul>
         <li>
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/profile/:id">Profile</Link>
+          <Link to={`/profile/${id}`}>Profile</Link>
         </li>
         <li>Categories:</li>
         <li>
@@ -31,7 +32,7 @@ const Navbar = (props) => {
         </li>
       </ul>
     </nav>
-    );
+  );
 };
 
 export default Navbar;

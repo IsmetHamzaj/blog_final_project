@@ -4,11 +4,10 @@ import Footer from "./Footer";
 
 
 
-const LayOut = (BaseComponent) => (props) => {
-    const match = props.match;
+const LayOut = (BaseComponent) => ({ id }) => {
     return (
         <div>
-            <Header match={match} />
+            <Header id={id} />
             <BaseComponent />
             <Footer />
         </div>
