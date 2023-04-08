@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { hideLoading, showLoading } from '../../Redux/loadingSlice';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-hot-toast';
 
 const BlogPost = () => {
     const { id } = useParams();
@@ -23,10 +24,46 @@ const BlogPost = () => {
             });
     }, [id]);
 
+    function CreateComment() {
+        const [content, setContent] = useState("")
+        const [blogId, setBlogId] = useState("")
+        const onSubmit = async (e) => {
+            try {
+                dispatch(showLoading())
+                const commentContent = await e.target.content.value
+                const commentBlogId = await e.target.blogId.value
+                const response = await axios.post("http://localhost:3000/api/comments", {
+                    content: commentContent,
+                    blogId: commentBlogId
+                })
+                dispatch(hideLoading())
+                if (response.data.data) {
+                    toast("Comment done")
+                } else {
+                    toast.error(response.data.message)
+                }
+            } catch (error) {
+                dispatch(hideLoading())
+                toast.error("Something went wrong")
+            }
+        }
+        return (
+            <div>
+                <form onSubmit={onSubmit}>
+                    <input type='text' name='content' placeholder='Comment...' />
+                    <input type='text' name='blogId' placeholder='Blog ID...' />
+                    <button type='submit'>Post Comment</button>
+                </form>
+            </div>
+        )
+    }
+
+
     console.log(id)
 
     return (
         <div>
+            <CreateComment />
             {Object.keys(blogPost).length === 0 ? (
                 <div>Loading...</div>
             ) : (
