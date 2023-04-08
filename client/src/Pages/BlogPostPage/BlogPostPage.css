@@ -1,4 +1,8 @@
-/* BlogPost container */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .blog-post-container {
     display: flex;
     flex-direction: column;
@@ -6,7 +10,6 @@
     margin-top: 50px;
 }
 
-/* BlogPost title */
 .blog-post-description,
 .blog-post-title,
 .blog-post-tags {
@@ -18,7 +21,6 @@
 }
 
 
-/* Comments container */
 .comments-container {
     display: flex;
     flex-direction: column;
@@ -28,7 +30,6 @@
     overflow: auto;
 }
 
-/* Single comment */
 .comment {
     margin: 10px;
     padding: 10px;
@@ -36,19 +37,16 @@
     border-radius: 5px;
 }
 
-/* Comment content */
 .comment-content {
     font-size: 14px;
     margin-bottom: 5px;
 }
 
-/* Comment date */
 .comment-date {
     font-size: 12px;
     color: #777;
 }
 
-/* Comment form */
 .comment-form {
     display: flex;
     flex-direction: column;
@@ -56,7 +54,6 @@
     margin-top: 50px;
 }
 
-/* Comment input fields */
 .comment-input {
     width: 300px;
     height: 30px;
@@ -67,7 +64,6 @@
     font-size: 14px;
 }
 
-/* Comment submit button */
 .comment-submit {
     width: 100px;
     height: 30px;
@@ -79,7 +75,6 @@
     font-size: 14px;
 }
 
-/* Comment submit button on hover */
 .comment-submit:hover {
     background-color: #00698C;
 }
