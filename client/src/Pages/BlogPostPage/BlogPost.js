@@ -38,6 +38,32 @@ const BlogPost = () => {
             });
     }, [id]);
 
+    function GetComments({ comments }) {
+        return (
+          <div>
+            {
+              comments?.map((f) => {
+                return (
+                  <div key={f._id}>
+                    <p>{f.content}</p>
+                  </div>
+                )
+              })
+            }
+          </div>
+        )
+      }
+
+      function DisplayComments({ blogId }) {
+        const blogComments = comments.filter(comment => comment?._id === id);
+        // console.log(blogComments)
+        if (blogComments.length > 0) {
+          return (<GetComments comments={blogComments} />)
+        } else {
+          return null
+        }
+      }
+
     function CreateComment() {
         const [content, setContent] = useState("")
         const [blogId, setBlogId] = useState("")
@@ -86,6 +112,7 @@ const BlogPost = () => {
                     <p>{blogPost.tags}</p>
                 </div>
             )}
+            <DisplayComments />
             <CreateComment />
         </div>
     );
