@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { hideLoading, showLoading } from '../../Redux/loadingSlice';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
+import "./BlogPostPage.css"
 
 const BlogPost = () => {
     const { id } = useParams();
@@ -41,12 +42,12 @@ const BlogPost = () => {
 
     function GetComments() {
         return (
-            <div>
+            <div className="comments-container">
                 {
                     comments.map((com) => {
                         return (
-                            <div key={com._id}>
-                                <p>{com.content}</p>
+                            <div key={com._id} className="comment">
+                                <p className="comment-content">{com.content}</p>
                             </div>
                         )
                     })
@@ -60,7 +61,8 @@ const BlogPost = () => {
         console.log(blogComments)
         // console.log(blogComments)
         if (blogComments.length > 0) {
-            return (<GetComments comments={blogComments} />)
+            return (
+                <div className='comments-content'><GetComments comments={blogComments} /></div>)
         } else {
             return null
         }
@@ -90,11 +92,11 @@ const BlogPost = () => {
             }
         }
         return (
-            <div>
+            <div className='comment-form-container'>
                 <form onSubmit={onSubmit}>
-                    <input type='text' name='content' placeholder='Comment...' />
-                    <input type='text' name='blogId' placeholder='Blog ID...' />
-                    <button type='submit'>Post Comment</button>
+                    <input type='text' name='content' className='comment-input' placeholder='Comment...' />
+                    <input type='text' name='blogId' className='comment-input' placeholder='Blog ID...' />
+                    <button type='submit' className="comment-submit-button">Post Comment</button>
                 </form>
             </div>
         )
