@@ -9,6 +9,20 @@ const BlogPost = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const [blogPost, setBlogPost] = useState({});
+    const [comments, setComments] = useState([])
+
+    useEffect(() => {
+        axios.get("http://localhost:3000/api/comments", {}, {
+            headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+        })
+            .then((response) => {
+                const comment = response.data.data
+                console.log(comment)
+                setComments(comment)
+            }).catch((err) => {
+                console.log(err)
+            })
+    }, [])
 
     useEffect(() => {
         dispatch(showLoading());
