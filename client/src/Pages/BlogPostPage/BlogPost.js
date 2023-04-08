@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { hideLoading, showLoading } from '../../Redux/loadingSlice';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
+import LayOut from '../../Components/LayOut';
 import "./BlogPostPage.css"
 
 const BlogPost = () => {
@@ -125,4 +126,4 @@ const BlogPost = () => {
 
 };
 
-export default BlogPost;
+export default LayOut(BlogPost);
