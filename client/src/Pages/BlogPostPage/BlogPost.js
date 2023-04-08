@@ -40,30 +40,28 @@ const BlogPost = () => {
 
     function GetComments({ comments }) {
         return (
-          <div>
-            {
-              Object.keys(comments)?.map((f) => {
-                return (
-                  <div key={f._id}>
-                    <p>{f.content}</p>
-                  </div>
-                )
-              })
-            }
-          </div>
+            <div>
+                {Object.keys(comments).length === 0 ? (
+                    <div>Loading...</div>
+                ) : (
+                    <div key={comments._id}>
+                        <p>{comments.content}</p>
+                    </div>
+                )}
+            </div>
         )
-      }
+    }
 
-      function DisplayComments() {
+    function DisplayComments() {
         const blogComments = comments.filter(comment => comment?._id === id);
         console.log(blogComments)
         // console.log(blogComments)
         if (blogComments.length > 0) {
-          return (<GetComments comments={blogComments} />)
+            return (<GetComments comments={blogComments} />)
         } else {
-          return null
+            return null
         }
-      }
+    }
 
     function CreateComment() {
         const [content, setContent] = useState("")
