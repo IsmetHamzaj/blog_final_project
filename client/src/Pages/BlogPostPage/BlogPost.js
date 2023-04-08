@@ -63,7 +63,6 @@ const BlogPost = () => {
 
     return (
         <div>
-            <CreateComment />
             {Object.keys(blogPost).length === 0 ? (
                 <div>Loading...</div>
             ) : (
@@ -73,6 +72,7 @@ const BlogPost = () => {
                     <p>{blogPost.tags}</p>
                 </div>
             )}
+            <CreateComment />
         </div>
     );
 
