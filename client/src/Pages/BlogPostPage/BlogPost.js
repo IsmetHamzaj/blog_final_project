@@ -9,7 +9,7 @@ const BlogPost = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const [blogPost, setBlogPost] = useState({});
-    const [comments, setComments] = useState([])
+    const [comments, setComments] = useState({})
 
     useEffect(() => {
         axios.get("http://localhost:3000/api/comments", {}, {
@@ -42,7 +42,7 @@ const BlogPost = () => {
         return (
           <div>
             {
-              comments?.map((f) => {
+              Object.keys(comments)?.map((f) => {
                 return (
                   <div key={f._id}>
                     <p>{f.content}</p>
@@ -54,8 +54,9 @@ const BlogPost = () => {
         )
       }
 
-      function DisplayComments({ blogId }) {
+      function DisplayComments() {
         const blogComments = comments.filter(comment => comment?._id === id);
+        console.log(blogComments)
         // console.log(blogComments)
         if (blogComments.length > 0) {
           return (<GetComments comments={blogComments} />)
