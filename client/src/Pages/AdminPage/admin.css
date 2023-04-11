@@ -1,0 +1,18 @@
+.admin-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+}
+
+.name_containers {
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.title{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
