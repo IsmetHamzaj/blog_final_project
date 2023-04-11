@@ -7,6 +7,7 @@ import BlogPostPage from './Pages/BlogPostPage/BlogPostPage'
 import Register from './Components/Register/Register'
 import ProtectedRoutes from './ProtectedRoutes'
 import Admin from './Pages/AdminPage'
+import AdminLogin from './Components/AdminLogin'
 
 
 
@@ -19,6 +20,7 @@ const Views = () => {
             <Route path='/blog/:id' element={<ProtectedRoutes><BlogPost /></ProtectedRoutes>} />
             <Route path='/register' element={<Register />} />
             <Route path='/admin' element={<ProtectedRoutes><Admin /></ProtectedRoutes>} />
+            <Route path='/login/admin' element={<AdminLogin />} />
         </Routes>
     )
 }
