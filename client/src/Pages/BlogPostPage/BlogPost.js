@@ -96,7 +96,7 @@ const BlogPost = () => {
             <div className='comment-form-container'>
                 <form onSubmit={onSubmit}>
                     <input type='text' name='content' className='comment-input' placeholder='Comment...' />
-                    <input type='text' name='blogId' className='comment-input' placeholder='Blog ID...' />
+                    <input type='hidden' name='blogId' className='comment-input' placeholder='Blog ID...' value={id} />
                     <button type='submit' className="comment-submit-button">Post Comment</button>
                 </form>
             </div>
