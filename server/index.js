@@ -23,6 +23,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/blogs", cors() ,blogRoutes)
 app.use("/api/users", cors(), userRoutes)
 app.use("/api/comments", cors(), commentRoutes)
-app.use('/admin', cors(), adminRoutes)
+app.use('/api/admin', cors(), adminRoutes)
 
 app.listen(3000, () => {console.log(`Server is running on port 3000`)})
