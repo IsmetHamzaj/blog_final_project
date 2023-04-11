@@ -5,7 +5,16 @@ import "./admin.css"
 const Admin = () => {
     const [adminUsers, setAdminUsers] = useState([])
     const [adminBlogs, setAdminBlogs] = useState([])
+    const [adminComments, setAdminComments] = useState([])
     useEffect(() => {
+        axios.get("http://localhost:3000/api/comments")
+            .then((res) => {
+                setAdminComments(res.data.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
         axios.get("http://localhost:3000/api/blogs")
             .then((res) => {
                 setAdminBlogs(res.data.data)
@@ -13,6 +22,7 @@ const Admin = () => {
             .catch((err) => {
                 console.log(err)
             })
+
         axios.get("http://localhost:3000/api/admin/all-users")
             .then((res) => {
                 setAdminUsers(res.data.data)
@@ -57,6 +67,26 @@ const Admin = () => {
                                     <p>Title: {blogs.title}</p>
                                     <p>Description: {blogs.description}</p>
                                     <p>Date: {blogs.date}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+        )
+    }
+
+
+    function AllComments() {
+        return(
+            <div>
+                <h3 className='title'>User Comments:</h3>
+                <div>
+                    {
+                        adminComments((comments) => {
+                            return(
+                                <div>
+                                    <p>Content: {comments.content}</p>
                                 </div>
                             )
                         })
