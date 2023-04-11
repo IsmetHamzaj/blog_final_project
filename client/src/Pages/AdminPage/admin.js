@@ -64,6 +64,7 @@ const Admin = () => {
                         adminBlogs.map((blogs) => {
                             return (
                                 <div className='name_containers'>
+                                    <p>ID-s: {blogs._id}</p>
                                     <p>Title: {blogs.title}</p>
                                     <p>Description: {blogs.description}</p>
                                     <p>Date: {blogs.date}</p>
@@ -81,11 +82,12 @@ const Admin = () => {
         return(
             <div>
                 <h3 className='title'>User Comments:</h3>
-                <div>
+                <div className='admin-container'>
                     {
-                        adminComments((comments) => {
+                        adminComments.map((comments) => {
                             return(
-                                <div>
+                                <div className='name_containers'>
+                                    <p>Blog Id: {comments.blogId}</p>
                                     <p>Content: {comments.content}</p>
                                 </div>
                             )
@@ -104,6 +106,10 @@ const Admin = () => {
             <hr></hr>
             <hr></hr>
             <AllBlogs />
+            <hr></hr>
+            <hr></hr>
+            <hr></hr>
+            <AllComments />
         </div>
     )
 }
