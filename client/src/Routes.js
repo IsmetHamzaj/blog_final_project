@@ -8,6 +8,7 @@ import Register from './Components/Register/Register'
 import ProtectedRoutes from './ProtectedRoutes'
 import Admin from './Pages/AdminPage'
 import AdminLogin from './Components/AdminLogin'
+import AdminProtectedRoute from './Components/AdminProtectedRoute'
 
 
 
@@ -19,7 +20,7 @@ const Views = () => {
             <Route path='/profile/:id' element={<ProtectedRoutes><Profile /></ProtectedRoutes>} />
             <Route path='/blog/:id' element={<ProtectedRoutes><BlogPost /></ProtectedRoutes>} />
             <Route path='/register' element={<Register />} />
-            <Route path='/admin' element={<ProtectedRoutes><Admin /></ProtectedRoutes>} />
+            <Route path='/admin' element={<AdminProtectedRoute><Admin /></AdminProtectedRoute>} />
             <Route path='/login/admin' element={<AdminLogin />} />
         </Routes>
     )
