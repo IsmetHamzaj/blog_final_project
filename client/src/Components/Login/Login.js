@@ -27,7 +27,6 @@ const Login = () => {
         toast.success(response.data.success)
         toast("Redirecting to homepage")
         localStorage.setItem("token", response.data.token)
-        localStorage.setItem("isAdmin", response.data.data.isAdmin)
         navigate('/')
       } else {
         dispatch(hideLoading())

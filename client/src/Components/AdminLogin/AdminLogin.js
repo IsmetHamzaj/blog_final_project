@@ -24,6 +24,7 @@ const AdminLogin = () => {
             console.log(response.data.data.isAdmin)
             dispatch(hideLoading())
             if(response.data.data.isAdmin) {
+                localStorage.setItem("isAdmin", response.data.data.isAdmin)
                 toast.success(response.data.message)
                 toast("Redirecting to admin panel")
                 navigate("/admin")
@@ -37,6 +38,7 @@ const AdminLogin = () => {
     }
   return (
     <div>
+        <h1>Warning: This login page is only for admin</h1>
         <form onSubmit={onSubmit}>
             <input type='email' placeholder='Email' name="email" onChange={(e) => setEmail(e.target.value)} />
             <input type='password' placeholder='Password' name='password' onChange={(e) => setPassword(e.target.value)} />

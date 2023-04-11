@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 function AdminProtectedRoute(props) {
     const isAdmin = JSON.parse(localStorage.getItem("isAdmin"))
     if(isAdmin) {
-        return(
+        return (
             <div>
                 {props.children}
             </div>
