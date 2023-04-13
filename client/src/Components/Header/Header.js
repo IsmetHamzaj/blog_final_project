@@ -15,22 +15,17 @@ const Navbar = (props) => {
       setIsLoggedOut(true);
     } else if (isAdmin) {
       localStorage.removeItem('isAdmin');
-      setAdminIsLoggedOut(true);
+      setIsLoggedOut(true);
     } else {
       alert("You are not logged in");
     }
   }
 
   const [isLoggedOut, setIsLoggedOut] = useState(false);
-  const [adminIsLoggedOut, setAdminIsLoggedOut] = useState(false)
 
   if (isLoggedOut) {
     return <Navigate to='/login' />;
   }
-  if (adminIsLoggedOut) {
-    return <Navigate to="/login/admin" />
-  }
-
 
 
   return (
