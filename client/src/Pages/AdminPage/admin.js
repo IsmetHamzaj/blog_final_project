@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import "./admin.css"
+import LayOut from '../../Components/LayOut'
 
 const Admin = () => {
     const [adminUsers, setAdminUsers] = useState([])
@@ -114,4 +115,4 @@ const Admin = () => {
     )
 }
 
-export default Admin
+export default LayOut(Admin)

@@ -1,9 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import './Header.css'
 
 const Navbar = (props) => {
   const { id } = props
+
+  const localStorageToken = localStorage.getItem('token')
+  const isAdmin = JSON.parse(localStorage.getItem('isAdmin'))
+
+  function LogOut(e) {
+    e.preventDefault();
+    if (localStorageToken) {
+      localStorage.removeItem('token');
+      setIsLoggedOut(true);
+    } else if (isAdmin) {
+      localStorage.removeItem('isAdmin');
+      setAdminIsLoggedOut(true);
+    } else {
+      alert("You are not logged in");
+    }
+  }
+
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
+  const [adminIsLoggedOut, setAdminIsLoggedOut] = useState(false)
+
+  if (isLoggedOut) {
+    return <Navigate to='/login' />;
+  }
+  if (adminIsLoggedOut) {
+    return <Navigate to="/login/admin" />
+  }
+
+
+
   return (
     <nav>
       <ul>
@@ -30,6 +59,9 @@ const Navbar = (props) => {
             </option>
           </select>
         </li>
+      </ul>
+      <ul>
+        <button onClick={LogOut}>LogOut</button>
       </ul>
     </nav>
   );
