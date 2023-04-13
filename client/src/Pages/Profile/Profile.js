@@ -7,14 +7,14 @@ import LayOut from '../../Components/LayOut'
 
 const ProfileWrapper = () => {
     let { id } = useParams()
-
+    console.log("ID value: ", id)
     return <Profile id={id} />
 }
 
 const Profile = ({ id }) => {
     const [user, setUser] = useState({})
     const dispatch = useDispatch()
-    
+
     const getUserData = async () => {
         try {
             dispatch(showLoading())

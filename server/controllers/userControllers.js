@@ -48,12 +48,11 @@ const getUserById = async (req, res) => {
             data: user
         })
     } catch (error) {
-        console.log(error)
-        // res.status(500).json({
-        //     status: "Failed",
-        //     success: false,
-        //     message: error
-        // })
+        res.status(500).json({
+            status: "Failed",
+            success: false,
+            message: error
+        })
     }
 }
 

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './Pages/Home'
 import Login from './Components/Login/Login'
-import Profile from './Pages/Profile/Profile'
+import ProfileWrapper from './Pages/Profile'
 import BlogPost from './Pages/BlogPostPage/BlogPost'
 import BlogPostPage from './Pages/BlogPostPage/BlogPostPage'
 import Register from './Components/Register/Register'
@@ -17,7 +17,7 @@ const Views = () => {
         <Routes>
             <Route path='/' element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
             <Route path='/login' element={<Login />} />
-            <Route path='/profile/:id' element={<ProtectedRoutes><Profile /></ProtectedRoutes>} />
+            <Route path='/profile/:id' element={<ProtectedRoutes><ProfileWrapper /></ProtectedRoutes>} />
             <Route path='/blog/:id' element={<ProtectedRoutes><BlogPost /></ProtectedRoutes>} />
             <Route path='/register' element={<Register />} />
             <Route path='/admin' element={<AdminProtectedRoute><Admin /></AdminProtectedRoute>} />
