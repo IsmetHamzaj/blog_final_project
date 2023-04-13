@@ -33,7 +33,6 @@ const getAllUsers = async (req, res) => {
 const getUserById = async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
-        console.log(User.findById(req.params.id))
         console.log(user)
         console.log(req.params.id)
         if (!user) {

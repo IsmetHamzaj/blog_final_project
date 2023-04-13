@@ -6,15 +6,15 @@ import { showLoading, hideLoading } from '../../Redux/loadingSlice'
 import LayOut from '../../Components/LayOut'
 
 const ProfileWrapper = () => {
-    const { id } = useParams()
-    console.log(JSON.stringify(id))
+    let { id } = useParams()
+
     return <Profile id={id} />
 }
 
 const Profile = ({ id }) => {
     const [user, setUser] = useState({})
     const dispatch = useDispatch()
-    console.log(id)
+    
     const getUserData = async () => {
         try {
             dispatch(showLoading())
