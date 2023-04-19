@@ -6,17 +6,23 @@ import { showLoading, hideLoading } from '../../Redux/loadingSlice'
 import LayOut from '../../Components/LayOut'
 
 const ProfileWrapper = () => {
-    let { id } = useParams()
-    console.log("ID value: ", id)
-    return <Profile id={id} />
-}
+    const { id } = useParams();
+    return <LayOut><Profile id={id} /></LayOut>;
+  };
+  
+
 
 const Profile = ({ id }) => {
+    console.log('id', id);
     const [user, setUser] = useState({})
     const dispatch = useDispatch()
 
     const getUserData = async () => {
         try {
+            if (!id) {
+                return alert("The id is not getting extracted");
+            }
+
             dispatch(showLoading())
             const response = await axios.get(`http://localhost:3000/api/users/${id}`, {
                 headers: { Authorization: `Bearer ` + localStorage.getItem('token') }
@@ -30,12 +36,11 @@ const Profile = ({ id }) => {
         }
     }
 
-
     useEffect(() => {
         getUserData()
-    }, [])
+    }, [id])
 
-    if (!user.id) {
+    if (!user._id) {
         return <p>Loading...</p>
     }
 
@@ -56,4 +61,4 @@ const Profile = ({ id }) => {
     );
 }
 
-export default LayOut(ProfileWrapper)
+export default ProfileWrapper;
