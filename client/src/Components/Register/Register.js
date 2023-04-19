@@ -22,7 +22,7 @@ const Register = () => {
       const response = await axios.post('http://localhost:3000/api/users/register', userData);
       console.log(response.data)
       dispatch(hideLoading());
-      if (response.data.success) {
+      if (response.data) {
         toast.success(response.data.message);
         toast("Redirecting to login page")
         navigate('/login');
@@ -31,7 +31,7 @@ const Register = () => {
       }
     } catch (error) {
       dispatch(hideLoading());
-      console.log(error.response.data)
+      console.log(error)
     }
   };
 
