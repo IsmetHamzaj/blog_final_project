@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Login.css'
 import LayOut from '../LayOut'
 import toast from 'react-hot-toast'
@@ -45,6 +45,7 @@ const Login = () => {
             <input type="password" placeholder='password' name='password' onChange={(e) => setPassword(e.target.value)} />
             <button type='submit'>Log in</button>
           </form>
+          <Link to='/register'>Go to register</Link>
         </div>
       </div>
     </div>
