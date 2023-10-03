@@ -22,14 +22,18 @@ const Login = () => {
         email: userEmail,
         password: userPassword
       })
+      console.log(response.data)
+      console.log(response.data.data)
       dispatch(hideLoading())
       if (response.data.data) {
         toast.success(response.data.success)
         toast("Redirecting to homepage")
         localStorage.setItem("token", response.data.token)
+        console.log(response.data.token)
         navigate('/')
       } else {
         dispatch(hideLoading())
+        alert("Passowrd is incorrect")
         toast.error(response.data.message)
       }
     } catch (error) {
@@ -52,4 +56,4 @@ const Login = () => {
   )
 }
 
-export default LayOut(Login)
+export default Login

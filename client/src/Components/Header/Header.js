@@ -39,7 +39,7 @@ const Navbar = (props) => {
         </li>
         <li>Categories:</li>
         <li>
-          <select>
+          {/* <select>
             <option>
               <Link to="/category/sports">Sports</Link>
             </option>
@@ -52,7 +52,7 @@ const Navbar = (props) => {
             <option>
               <Link to="/category/technology">Technology</Link>
             </option>
-          </select>
+          </select> */}
         </li>
       </ul>
       <ul>
