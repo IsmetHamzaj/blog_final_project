@@ -95,7 +95,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ email: req.body.email, password: req.body.password });
         const token = generateToken(user?._id);
 
         if (!user) {

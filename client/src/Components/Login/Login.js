@@ -19,11 +19,10 @@ const Login = () => {
       const userEmail = await e.target.email.value
       const userPassword = await e.target.password.value
       const response = await axios.post("http://localhost:3000/api/users", {
-        email: userEmail,
-        password: userPassword
+        email: email,
+        password: password
       })
-      console.log(response.data)
-      console.log(response.data.data)
+      console.log(response)
       dispatch(hideLoading())
       if (response.data.data) {
         toast.success(response.data.success)
